@@ -1,0 +1,178 @@
+/* Importamos la fuente Outfit de Google Fonts - moderna y legible */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* Inyectamos los estilos base, components y utilities de Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos globales para el body */
+body {
+  font-family: "Outfit", sans-serif;
+  overflow-x: clip;
+}
+
+/* Scroll suave en toda la página */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Definición de variables CSS para el tema claro y oscuro */
+@layer base {
+  :root {
+    /* Fondo blanco y texto negro oscuro */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    
+    /* Rosa principal (#FF69B4) - usado para botones y elementos destacados */
+    --primary: 330 100% 71%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Rosa claro (#FFB6D9) - usado para secondary */
+    --secondary: 330 100% 85%;
+    --secondary-foreground: 0 0% 10%;
+    
+    /* Dorado (#FFD700) - usado para accent */
+    --accent: 51 100% 50%;
+    --accent-foreground: 0 0% 10%;
+    
+    /* Gris muy claro - para fondos muted */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    
+    /* Rojo para errores y destructivo */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Tarjetas y popovers */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+    /* Bordes e inputs */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 330 100% 71%;
+    
+    /* Radio de bordes redondeados */
+    --radius: 0.75rem;
+    
+    /* Sidebar (si se usa) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 330 100% 71%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 330 100% 71%;
+  }
+  
+  /* Variables para modo oscuro - se aplican cuando .dark está en el html */
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%;
+    
+    --primary: 330 100% 71%;
+    --primary-foreground: 0 0% 10%;
+    
+    --secondary: 330 50% 25%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --accent: 51 100% 50%;
+    --accent-foreground: 0 0% 10%;
+    
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 330 100% 71%;
+    
+    --sidebar-background: 0 0% 12%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 330 100% 71%;
+    --sidebar-primary-foreground: 0 0% 10%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 330 100% 71%;
+  }
+}
+
+@layer components {
+  /* Animación de entrada suave para elementos */
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Efecto hover para tarjetas de producto - elevación y sombra */
+  .product-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .product-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
+  }
+  
+  /* Gradiente de marca para fondos (rosa a dorado) */
+  .brand-gradient {
+    background: linear-gradient(135deg, hsl(330 100% 71%) 0%, hsl(51 100% 50%) 100%);
+  }
+  
+  /* Texto con gradiente de marca - requiere fondo para verse */
+  .brand-text-gradient {
+    background: linear-gradient(135deg, hsl(330 100% 71%) 0%, hsl(51 100% 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Transiciones suaves para todos los elementos interactivos */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Espaciado generoso para secciones */
+section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Mejora de legibilidad para párrafos - línea ideal 65 caracteres */
+p {
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+/* Headings con balance de texto (distribución uniforme) */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}

@@ -1,15 +1,11 @@
-// Importamos React
 import React from 'react';
-// Importamos motion para animaciones
 import { motion } from 'framer-motion';
-// Importamos iconos
 import { Package, Truck, CreditCard } from 'lucide-react';
-// Importamos componente Separator
 import { Separator } from '@/components/ui/separator';
 
-// Componente de resumen de orden para el checkout
+// Componente de resumen de orden para checkout
 const OrderSummary = ({ cartItems, subtotal, shipping, tax, total }) => {
-  // Formatea precios como moneda USD
+  // Formatear precio a moneda
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-MX', {
       style: 'currency',
@@ -18,7 +14,7 @@ const OrderSummary = ({ cartItems, subtotal, shipping, tax, total }) => {
   };
 
   return (
-    // Contenedor principal del resumen con posición sticky
+    // Contenedor principal del resumen
     <motion.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
@@ -65,18 +61,17 @@ const OrderSummary = ({ cartItems, subtotal, shipping, tax, total }) => {
         ))}
       </div>
       
-      {/* Separador visual */}
       <Separator className="my-6" />
       
-      {/* Desglose de costos: subtotal, envío, impuestos */}
+      {/* Desglose de costos */}
       <div className="space-y-3 mb-6">
-        {/* Fila de subtotal */}
+        {/* Subtotal */}
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Subtotal</span>
           <span className="font-medium text-card-foreground">{formatPrice(subtotal)}</span>
         </div>
         
-        {/* Fila de envío con icono */}
+        {/* Envío */}
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground flex items-center gap-2">
             <Truck className="w-4 h-4" />
@@ -87,7 +82,7 @@ const OrderSummary = ({ cartItems, subtotal, shipping, tax, total }) => {
           </span>
         </div>
         
-        {/* Fila de impuestos */}
+        {/* Impuestos */}
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Impuestos</span>
           <span className="font-medium text-card-foreground">{formatPrice(tax)}</span>
@@ -96,19 +91,21 @@ const OrderSummary = ({ cartItems, subtotal, shipping, tax, total }) => {
       
       <Separator className="my-6" />
       
-      {/* Total final destacado */}
+      {/* Total */}
       <div className="flex justify-between items-center mb-6">
         <span className="text-lg font-semibold text-card-foreground">Total</span>
         <span className="text-2xl font-bold text-primary">{formatPrice(total)}</span>
       </div>
       
-      {/* Información adicional sobre envío y seguridad */}
+      {/* Información adicional */}
       <div className="space-y-3 pt-4 border-t border-border">
+        {/* Envío seguro */}
         <div className="flex items-start gap-3 text-xs text-muted-foreground">
           <Package className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
           <span>Envío seguro y con seguimiento incluido</span>
         </div>
         
+        {/* Pago seguro */}
         <div className="flex items-start gap-3 text-xs text-muted-foreground">
           <CreditCard className="w-4 h-4 mt-0.5 flex-shrink-0 text-primary" />
           <span>Pago 100% seguro y encriptado</span>

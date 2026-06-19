@@ -1,17 +1,14 @@
-// Importamos React y sus hooks
 import React, { useState, useEffect } from 'react';
-// Importamos componentes UI
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-// Importamos icono
 import { X } from 'lucide-react';
 
-// Componente de formulario para crear/editar productos en el panel de administración
+// Componente de formulario para crear/editar productos en el panel admin
 const AdminProductForm = ({ product, onSubmit, onCancel }) => {
-  // Estado del formulario con valores iniciales vacíos
+  // Estado del formulario con valores iniciales
   const [formData, setFormData] = useState({
     nombre: '',
     descripcion: '',
@@ -22,7 +19,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
     destacado: false
   });
 
-  // Cargar datos del producto si estamos editando (efecto secundario)
+  // Cargar datos del producto si estamos editando
   useEffect(() => {
     if (product) {
       setFormData({
@@ -37,7 +34,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
     }
   }, [product]);
 
-  // Maneja cambios en los inputs del formulario
+  // Manejar cambios en los inputs del formulario
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -46,7 +43,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
     }));
   };
 
-  // Maneja el cambio en el select de categoría
+  // Manejar cambio en el select de categoría
   const handleCategoryChange = (value) => {
     setFormData(prev => ({
       ...prev,
@@ -54,29 +51,29 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
     }));
   };
 
-  // Maneja el envío del formulario
+  // Manejar envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validamos campos requeridos
+    // Validar campos requeridos
     if (!formData.nombre || !formData.precio || !formData.categoria) {
       alert('Por favor completa todos los campos requeridos');
       return;
     }
     
-    // Convertimos precio e inventario a números
+    // Convertir precio e inventario a números
     const productData = {
       ...formData,
       precio: parseFloat(formData.precio),
       inventario: parseInt(formData.inventario) || 0,
-      id: product?.id || `prod_${Date.now()}` // Generamos ID si es nuevo producto
+      id: product?.id || `prod_${Date.now()}` // Generar ID si es nuevo producto
     };
     
-    // Llamamos a la función de envío del padre
+    // Llamar a la función de envío
     onSubmit(productData);
   };
 
-  // Categorías disponibles para el select
+  // Categorías disponibles
   const categories = [
     'Osos',
     'Regalos Personalizados',
@@ -88,17 +85,24 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
   return (
     // Formulario principal
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Encabezado con título y botón de cerrar */}
+      {/* Encabezado del formulario */}
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-bold text-card-foreground">
           {product ? 'Editar Producto' : 'Nuevo Producto'}
         </h3>
-        <Button type="button" variant="ghost" size="icon" onClick={onCancel} className="text-muted-foreground hover:text-foreground">
+        {/* Botón de cerrar */}
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          onClick={onCancel}
+          className="text-muted-foreground hover:text-foreground"
+        >
           <X className="w-5 h-5" />
         </Button>
       </div>
       
-      {/* Campo: Nombre del producto (requerido) */}
+      {/* Campo: Nombre del producto */}
       <div className="space-y-2">
         <Label htmlFor="nombre" className="text-sm font-medium text-card-foreground">
           Nombre del Producto *
@@ -114,7 +118,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
         />
       </div>
       
-      {/* Campo: Descripción (opcional) */}
+      {/* Campo: Descripción */}
       <div className="space-y-2">
         <Label htmlFor="descripcion" className="text-sm font-medium text-card-foreground">
           Descripción
@@ -130,9 +134,9 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
         />
       </div>
       
-      {/* Fila: Precio y Categoría (ambos requeridos) */}
+      {/* Fila: Precio y Categoría */}
       <div className="grid grid-cols-2 gap-4">
-        {/* Campo: Precio (requerido) */}
+        {/* Campo: Precio */}
         <div className="space-y-2">
           <Label htmlFor="precio" className="text-sm font-medium text-card-foreground">
             Precio (USD) *
@@ -151,7 +155,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
           />
         </div>
         
-        {/* Campo: Categoría (requerido) */}
+        {/* Campo: Categoría */}
         <div className="space-y-2">
           <Label htmlFor="categoria" className="text-sm font-medium text-card-foreground">
             Categoría *
@@ -171,7 +175,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
         </div>
       </div>
       
-      {/* Campo: URL de imagen (opcional) */}
+      {/* Campo: URL de imagen */}
       <div className="space-y-2">
         <Label htmlFor="imagen" className="text-sm font-medium text-card-foreground">
           URL de Imagen
@@ -185,7 +189,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
           placeholder="https://images.unsplash.com/..."
           className="bg-background text-foreground"
         />
-        {/* Vista previa de la imagen (solo si hay URL) */}
+        {/* Vista previa de la imagen */}
         {formData.imagen && (
           <div className="mt-2 rounded-lg overflow-hidden border border-border">
             <img
@@ -193,14 +197,14 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
               alt="Vista previa"
               className="w-full h-48 object-cover"
               onError={(e) => {
-                e.target.style.display = 'none'; // Ocultamos si hay error de carga
+                e.target.style.display = 'none';
               }}
             />
           </div>
         )}
       </div>
       
-      {/* Campo: Inventario disponible */}
+      {/* Campo: Inventario */}
       <div className="space-y-2">
         <Label htmlFor="inventario" className="text-sm font-medium text-card-foreground">
           Inventario Disponible
@@ -217,7 +221,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
         />
       </div>
       
-      {/* Checkbox: Marcar como producto destacado */}
+      {/* Checkbox: Producto destacado */}
       <div className="flex items-center space-x-2">
         <input
           type="checkbox"
@@ -234,10 +238,21 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
       
       {/* Botones de acción */}
       <div className="flex gap-3 pt-4">
-        <Button type="submit" className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
+        {/* Botón de guardar */}
+        <Button
+          type="submit"
+          className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+        >
           {product ? 'Actualizar Producto' : 'Crear Producto'}
         </Button>
-        <Button type="button" variant="outline" onClick={onCancel} className="flex-1">
+        
+        {/* Botón de cancelar */}
+        <Button
+          type="button"
+          variant="outline"
+          onClick={onCancel}
+          className="flex-1"
+        >
           Cancelar
         </Button>
       </div>

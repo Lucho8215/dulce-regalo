@@ -1,28 +1,20 @@
-// Importamos React
 import React from 'react';
-// Importamos Helmet para meta tags SEO
 import { Helmet } from 'react-helmet';
-// Importamos Link para navegación
 import { Link } from 'react-router-dom';
-// Importamos motion para animaciones
 import { motion } from 'framer-motion';
-// Importamos iconos
 import { ShoppingCart, Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
-// Importamos componentes UI
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-// Importamos componentes propios
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-// Importamos hook del carrito
 import { useCart } from '@/hooks/useCart';
 
-// Página del carrito de compras - muestra los productos agregados
+// Página del carrito de compras
 const CartPage = () => {
-  // Hook del carrito: obtenemos todos los datos y funciones
+  // Hook del carrito con todas las funciones
   const { cartItems, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
 
-  // Formatea precios como moneda con código de moneda del producto
+  // Formatear precio
   const formatPrice = (priceInCents, currencyInfo) => {
     const price = priceInCents / 100;
     return new Intl.NumberFormat('es-MX', {
@@ -31,7 +23,7 @@ const CartPage = () => {
     }).format(price);
   };
 
-  // Calcula el subtotal (antes de envío e impuestos)
+  // Calcular subtotal
   const calculateSubtotal = () => {
     return cartItems.reduce((total, item) => {
       const price = item.variant.sale_price_in_cents ?? item.variant.price_in_cents;
@@ -39,18 +31,18 @@ const CartPage = () => {
     }, 0);
   };
 
-  // Calcula el costo de envío (gratis si subtotal >= $50)
+  // Calcular envío (gratis si es mayor a $50)
   const calculateShipping = () => {
     const subtotal = calculateSubtotal() / 100;
     return subtotal >= 50 ? 0 : 5.99;
   };
 
-  // Calcula los impuestos (16% del subtotal)
+  // Calcular impuestos (16%)
   const calculateTax = () => {
     return (calculateSubtotal() / 100) * 0.16;
   };
 
-  // Calcula el total final
+  // Calcular total
   const calculateTotal = () => {
     return (calculateSubtotal() / 100) + calculateShipping() + calculateTax();
   };
@@ -66,7 +58,7 @@ const CartPage = () => {
       <div className="min-h-screen bg-background">
         <Header />
 
-        {/* Hero section con título y contador */}
+        {/* Hero section */}
         <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -84,11 +76,11 @@ const CartPage = () => {
           </div>
         </section>
 
-        {/* Contenido principal: lista de productos y resumen */}
+        {/* Contenido principal */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {cartItems.length === 0 ? (
-              // Estado vacío: carrito sin productos
+              // Estado vacío
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -111,14 +103,19 @@ const CartPage = () => {
                 </Button>
               </motion.div>
             ) : (
-              // Carrito con productos: grid de 3 columnas
+              // Carrito con productos
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Lista de productos (2/3 del ancho en desktop) */}
+                {/* Lista de productos */}
                 <div className="lg:col-span-2 space-y-4">
-                  {/* Botón para vaciar carrito */}
+                  {/* Botón de limpiar carrito */}
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-semibold text-foreground">Productos</h2>
-                    <Button variant="ghost" size="sm" onClick={clearCart} className="text-destructive hover:text-destructive/90">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearCart}
+                      className="text-destructive hover:text-destructive/90"
+                    >
                       Vaciar carrito
                     </Button>
                   </div>
@@ -175,7 +172,7 @@ const CartPage = () => {
                               </Button>
                             </div>
 
-                            {/* Botón eliminar */}
+                            {/* Botón de eliminar */}
                             <Button
                               variant="ghost"
                               size="sm"
@@ -188,7 +185,7 @@ const CartPage = () => {
                           </div>
                         </div>
 
-                        {/* Precio a la derecha */}
+                        {/* Precio */}
                         <div className="text-right">
                           <p className="text-xl font-bold text-primary">
                             {formatPrice(
@@ -208,7 +205,7 @@ const CartPage = () => {
                   ))}
                 </div>
 
-                {/* Resumen del pedido (1/3 del ancho, sticky en desktop) */}
+                {/* Resumen del pedido */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -246,7 +243,7 @@ const CartPage = () => {
 
                     <Separator className="my-6" />
 
-                    {/* Total final */}
+                    {/* Total */}
                     <div className="flex justify-between items-center mb-6">
                       <span className="text-lg font-semibold text-card-foreground">Total</span>
                       <span className="text-2xl font-bold text-primary">
@@ -255,14 +252,17 @@ const CartPage = () => {
                     </div>
 
                     {/* Botón de checkout */}
-                    <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.98]">
+                    <Button
+                      asChild
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.98]"
+                    >
                       <Link to="/checkout">
                         Proceder al Pago
                         <ArrowRight className="ml-2 w-5 h-5" />
                       </Link>
                     </Button>
 
-                    {/* Mensaje de envío gratis (si aplica) */}
+                    {/* Mensaje de envío gratis */}
                     {calculateSubtotal() / 100 < 50 && (
                       <p className="text-xs text-muted-foreground text-center mt-4">
                         Agrega ${(50 - calculateSubtotal() / 100).toFixed(2)} más para envío gratis

@@ -1,32 +1,28 @@
-// Importamos React
 import React from 'react';
-// Importamos motion para animaciones de entrada
 import { motion } from 'framer-motion';
-// Importamos componentes UI
 import { Button } from '@/components/ui/button';
-// Importamos icono de check
 import { Check } from 'lucide-react';
 
 // Componente de filtro por categoría con selección múltiple
 const CategoryFilter = ({ categories, selectedCategories, onCategoryChange }) => {
-  // Maneja el clic en una categoría del filtro
+  // Manejar clic en una categoría
   const handleCategoryClick = (category) => {
     // Si la categoría ya está seleccionada, la removemos
     if (selectedCategories.includes(category)) {
       onCategoryChange(selectedCategories.filter(cat => cat !== category));
     } else {
-      // Si no está seleccionada, la agregamos al array
+      // Si no está seleccionada, la agregamos
       onCategoryChange([...selectedCategories, category]);
     }
   };
 
-  // Limpia todos los filtros de categoría
+  // Limpiar todos los filtros de categoría
   const handleClearAll = () => {
     onCategoryChange([]);
   };
 
   return (
-    // Contenedor principal del filtro con estilo de tarjeta
+    // Contenedor principal del filtro
     <div className="bg-card rounded-xl p-6 shadow-sm border border-border">
       {/* Encabezado con título y botón de limpiar */}
       <div className="flex items-center justify-between mb-4">
@@ -45,14 +41,14 @@ const CategoryFilter = ({ categories, selectedCategories, onCategoryChange }) =>
         )}
       </div>
       
-      {/* Lista de categorías disponibles como botones */}
+      {/* Lista de categorías disponibles */}
       <div className="space-y-2">
         {categories.map((category, index) => {
-          // Verificamos si la categoría está seleccionada
+          // Verificar si la categoría está seleccionada
           const isSelected = selectedCategories.includes(category);
           
           return (
-            // Botón animado de categoría
+            // Botón de categoría con animación
             <motion.button
               key={category}
               initial={{ opacity: 0, x: -20 }}
@@ -71,7 +67,7 @@ const CategoryFilter = ({ categories, selectedCategories, onCategoryChange }) =>
               {/* Nombre de la categoría */}
               <span className="font-medium">{category}</span>
               
-              {/* Icono de check verde si está seleccionada */}
+              {/* Icono de check si está seleccionada */}
               {isSelected && (
                 <motion.div
                   initial={{ scale: 0 }}

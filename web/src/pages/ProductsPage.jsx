@@ -1,36 +1,27 @@
-// Importamos React y sus hooks
 import React, { useState, useEffect } from 'react';
-// Importamos Helmet para meta tags SEO
 import { Helmet } from 'react-helmet';
-// Importamos motion para animaciones
 import { motion } from 'framer-motion';
-// Importamos iconos
 import { SlidersHorizontal } from 'lucide-react';
-// Importamos componentes UI
-import { Button } from '@/components/ui/button';
-// Importamos componentes propios
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import PriceFilter from '@/components/PriceFilter';
 import SearchBar from '@/components/SearchBar';
-// Importamos el Sheet (sidebar móvil) desde UI
+import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-// Importamos datos de productos
 import productsData from '@/data/products.json';
-// Importamos hooks personalizados
 import { useCart } from '@/hooks/useCart';
 import { useToast } from '@/hooks/use-toast';
 
 // Página de listado de productos con filtros y búsqueda
 const ProductsPage = () => {
-  // Hook del carrito para agregar productos
+  // Hook del carrito
   const { addToCart } = useCart();
-  // Hook toast para notificaciones
+  // Hook de notificaciones
   const { toast } = useToast();
   
-  // Estados de productos y filtros
+  // Estado de productos y filtros
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -39,24 +30,24 @@ const ProductsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Cargar productos y categorías al montar el componente
+  // Cargar productos y categorías al montar
   useEffect(() => {
     const allProducts = productsData.products;
     setProducts(allProducts);
     setFilteredProducts(allProducts);
     
-    // Extraemos categorías únicas de los productos
+    // Extraer categorías únicas
     const uniqueCategories = [...new Set(allProducts.map(p => p.categoria))];
     setCategories(uniqueCategories);
     
-    // Calculamos rango de precios (min y max)
+    // Calcular rango de precios
     const prices = allProducts.map(p => p.precio);
     const minPrice = Math.floor(Math.min(...prices));
     const maxPrice = Math.ceil(Math.max(...prices));
     setPriceRange([minPrice, maxPrice]);
   }, []);
 
-  // Hook que aplica filtros cuando cambian los criterios
+  // Aplicar filtros cuando cambian los criterios
   useEffect(() => {
     let filtered = [...products];
     
@@ -68,7 +59,7 @@ const ProductsPage = () => {
     // Filtrar por rango de precio
     filtered = filtered.filter(p => p.precio >= priceRange[0] && p.precio <= priceRange[1]);
     
-    // Filtrar por término de búsqueda (nombre, descripción o categoría)
+    // Filtrar por término de búsqueda
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(p =>
@@ -81,7 +72,7 @@ const ProductsPage = () => {
     setFilteredProducts(filtered);
   }, [products, selectedCategories, priceRange, searchTerm]);
 
-  // Maneja agregar producto al carrito
+  // Manejar agregar producto al carrito
   const handleAddToCart = (product) => {
     const mockVariant = {
       id: product.id,
@@ -117,6 +108,10 @@ const ProductsPage = () => {
       });
   };
 
+  // Calcular precios mínimo y máximo para el filtro
+  const minPrice = products.length > 0 ? Math.floor(Math.min(...products.map(p => p.precio))) : 0;
+  const maxPrice = products.length > 0 ? Math.ceil(Math.max(...products.map(p => p.precio))) : 100;
+
   return (
     <>
       {/* Meta tags para SEO */}
@@ -128,7 +123,7 @@ const ProductsPage = () => {
       <div className="min-h-screen bg-background">
         <Header />
 
-        {/* Hero section de la página de productos */}
+        {/* Hero section de productos */}
         <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -147,7 +142,7 @@ const ProductsPage = () => {
           </div>
         </section>
 
-        {/* Contenido principal con filtros y grid de productos */}
+        {/* Contenido principal */}
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Barra de búsqueda y botón de filtros móvil */}
@@ -156,7 +151,7 @@ const ProductsPage = () => {
                 <SearchBar onSearch={setSearchTerm} placeholder="Buscar productos..." />
               </div>
               
-              {/* Botón de filtros para móvil (abre el Sheet) */}
+              {/* Botón de filtros para móvil */}
               <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
                 <SheetTrigger asChild>
                   <Button variant="outline" className="lg:hidden">
@@ -186,7 +181,7 @@ const ProductsPage = () => {
 
             {/* Layout con sidebar de filtros y grid de productos */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-              {/* Sidebar de filtros (solo visible en desktop) */}
+              {/* Sidebar de filtros (desktop) */}
               <aside className="hidden lg:block space-y-6">
                 <CategoryFilter
                   categories={categories}
@@ -209,7 +204,7 @@ const ProductsPage = () => {
                   </p>
                 </div>
 
-                {/* Grid de productos: responsive 1-2-3 columnas */}
+                {/* Grid de productos */}
                 {filteredProducts.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                     {filteredProducts.map((product, index) => (
@@ -224,7 +219,7 @@ const ProductsPage = () => {
                     ))}
                   </div>
                 ) : (
-                  // Estado vacío cuando no hay productos que coincidan
+                  // Estado vacío cuando no hay resultados
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -239,11 +234,14 @@ const ProductsPage = () => {
                     <p className="text-muted-foreground mb-6">
                       Intenta ajustar los filtros o la búsqueda
                     </p>
-                    <Button onClick={() => {
-                      setSelectedCategories([]);
-                      setPriceRange([minPrice, maxPrice]);
-                      setSearchTerm('');
-                    }} variant="outline">
+                    <Button
+                      onClick={() => {
+                        setSelectedCategories([]);
+                        setPriceRange([minPrice, maxPrice]);
+                        setSearchTerm('');
+                      }}
+                      variant="outline"
+                    >
                       Limpiar filtros
                     </Button>
                   </motion.div>

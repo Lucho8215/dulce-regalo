@@ -48,7 +48,7 @@ const ShoppingCart = ({ isCartOpen, setIsCartOpen }) => {
           className="fixed inset-0 bg-foreground/60 z-50"
           onClick={() => setIsCartOpen(false)}
         >
-          // Panel del carrito que entra desde la derecha
+          {/* Panel del carrito que entra desde la derecha */}
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}

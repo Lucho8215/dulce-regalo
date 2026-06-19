@@ -1,53 +1,49 @@
-// Importamos React y sus hooks
 import React, { useState } from 'react';
-// Importamos componentes UI
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-// Importamos iconos
 import { Package, AlertTriangle, CheckCircle, Edit } from 'lucide-react';
-// Importamos motion para animaciones
 import { motion } from 'framer-motion';
 
-// Componente de tabla de gestión de inventario para el panel de administración
+// Componente de tabla de gestión de inventario para el panel admin
 const AdminInventoryTable = ({ products, onUpdateInventory }) => {
-  // Estado para el ID del producto que se está editando
+  // Estado para el producto que se está editando
   const [editingId, setEditingId] = useState(null);
   // Estado para el nuevo valor de inventario
   const [newInventory, setNewInventory] = useState('');
 
-  // Inicia la edición de inventario para un producto
+  // Iniciar edición de inventario
   const handleStartEdit = (product) => {
     setEditingId(product.id);
     setNewInventory(product.inventario?.toString() || '0');
   };
 
-  // Cancela la edición actual
+  // Cancelar edición
   const handleCancelEdit = () => {
     setEditingId(null);
     setNewInventory('');
   };
 
-  // Guarda el nuevo valor de inventario
+  // Guardar nuevo valor de inventario
   const handleSaveInventory = (productId) => {
     const inventory = parseInt(newInventory);
     
-    // Validamos que sea un número válido
+    // Validar que sea un número válido
     if (isNaN(inventory) || inventory < 0) {
       alert('Por favor ingresa un número válido');
       return;
     }
     
-    // Llamamos a la función de actualización del padre
+    // Llamar a la función de actualización
     onUpdateInventory(productId, inventory);
     
-    // Limpiamos el estado de edición
+    // Limpiar estado de edición
     setEditingId(null);
     setNewInventory('');
   };
 
-  // Determina el estado visual del stock (agotado, bajo, disponible)
+  // Determinar el estado del stock
   const getStockStatus = (inventory) => {
     if (inventory === 0) {
       return { label: 'Agotado', variant: 'destructive', icon: AlertTriangle };
@@ -58,7 +54,7 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
     }
   };
 
-  // Formatea precios como moneda USD
+  // Formatear precio
   const formatPrice = (price) => {
     return new Intl.NumberFormat('es-MX', {
       style: 'currency',
@@ -67,7 +63,7 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
   };
 
   return (
-    // Contenedor principal de la tabla con estilo de tarjeta
+    // Contenedor principal de la tabla
     <div className="bg-card rounded-xl border border-border overflow-hidden">
       {/* Encabezado de la sección */}
       <div className="p-6 border-b border-border">
@@ -80,7 +76,7 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
         </p>
       </div>
       
-      {/* Tabla de inventario con scroll horizontal en móvil */}
+      {/* Tabla de inventario */}
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -96,13 +92,11 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
           </TableHeader>
           <TableBody>
             {products.map((product, index) => {
-              // Obtenemos el estado del stock
               const stockStatus = getStockStatus(product.inventario);
               const StatusIcon = stockStatus.icon;
               const isEditing = editingId === product.id;
               
               return (
-                // Fila animada de producto
                 <motion.tr
                   key={product.id}
                   initial={{ opacity: 0, y: 10 }}
@@ -138,7 +132,7 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
                     {formatPrice(product.precio)}
                   </TableCell>
                   
-                  {/* Estado del stock con badge */}
+                  {/* Estado del stock */}
                   <TableCell className="text-center">
                     <Badge variant={stockStatus.variant} className="flex items-center gap-1 w-fit mx-auto">
                       <StatusIcon className="w-3 h-3" />
@@ -164,21 +158,35 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
                     )}
                   </TableCell>
                   
-                  {/* Botones de acción */}
+                  {/* Acciones */}
                   <TableCell className="text-right">
                     {isEditing ? (
-                      // Modo edición: botones guardar y cancelar
                       <div className="flex gap-2 justify-end">
-                        <Button size="sm" onClick={() => handleSaveInventory(product.id)} className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                        {/* Botón guardar */}
+                        <Button
+                          size="sm"
+                          onClick={() => handleSaveInventory(product.id)}
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                        >
                           Guardar
                         </Button>
-                        <Button size="sm" variant="outline" onClick={handleCancelEdit}>
+                        {/* Botón cancelar */}
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={handleCancelEdit}
+                        >
                           Cancelar
                         </Button>
                       </div>
                     ) : (
-                      // Modo vista: botón editar
-                      <Button size="sm" variant="ghost" onClick={() => handleStartEdit(product)} className="text-muted-foreground hover:text-primary">
+                      // Botón editar
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleStartEdit(product)}
+                        className="text-muted-foreground hover:text-primary"
+                      >
                         <Edit className="w-4 h-4 mr-2" />
                         Editar
                       </Button>
@@ -191,7 +199,7 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
         </Table>
       </div>
       
-      {/* Mensaje cuando no hay productos */}
+      {/* Mensaje si no hay productos */}
       {products.length === 0 && (
         <div className="p-12 text-center">
           <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />

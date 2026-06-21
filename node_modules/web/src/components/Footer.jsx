@@ -105,13 +105,13 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span className="opacity-90">
-                  Av. Principal 123, Ciudad de México
+                  Av. Principal 123, Perdomo
                 </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 flex-shrink-0" />
-                <a href="tel:+525512345678" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
-                  +52 55 1234 5678
+                <a href="tel:+313547859" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
+                  +313547859
                 </a>
               </li>
               <li className="flex items-center gap-2">

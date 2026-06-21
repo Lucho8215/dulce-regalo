@@ -170,7 +170,7 @@ const ContactPage = () => {
                       <div>
                         <h3 className="font-semibold text-card-foreground mb-1">Teléfono</h3>
                         <a href="tel:+525512345678" className="text-muted-foreground hover:text-primary transition-colors">
-                          +52 55 1234 5678
+                          +313547859
                         </a>
                       </div>
                     </div>
@@ -186,7 +186,7 @@ const ContactPage = () => {
                         <h3 className="font-semibold text-card-foreground mb-1">Dirección</h3>
                         <p className="text-muted-foreground">
                           Av. Principal 123<br />
-                          Ciudad de México, 01000
+                          perdomo, 01000
                         </p>
                       </div>
                     </div>

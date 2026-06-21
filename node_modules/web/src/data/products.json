@@ -6,15 +6,11 @@
       "descripcion": "Adorable oso de peluche suave y esponjoso, perfecto para expresar amor y cariño. Hecho con materiales de alta calidad y detalles cuidadosos. Ideal para regalar en cualquier ocasión especial.",
       "precio": 29990,
       "categoria": "Osos",
-      "imagen": "https://images.unsplash.com/photo-1700832510490-9550a27f67b7",
+      "imagen": "/img/1.jpeg",
+      "imagen_url": "/img/1.jpeg",
       "inventario": 25,
       "destacado": true,
-      "variants": [
-        {
-          "id": "var_001",
-          "title": "Estándar"
-        }
-      ]
+      "variants": [{ "id": "var_001", "title": "Estándar" }]
     },
     {
       "id": "prod_002",
@@ -22,15 +18,11 @@
       "descripcion": "Hermosa caja decorativa con espacio para personalizar con fotos, mensajes y pequeños obsequios. Incluye compartimentos internos y acabado premium. El regalo perfecto para sorprender a alguien especial.",
       "precio": 49990,
       "categoria": "Regalos Personalizados",
-      "imagen": "https://images.unsplash.com/photo-1523596494337-5e57e5b19a03",
+      "imagen": "/img/2.jpeg",
+      "imagen_url": "/img/2.jpeg",
       "inventario": 15,
       "destacado": true,
-      "variants": [
-        {
-          "id": "var_002",
-          "title": "Estándar"
-        }
-      ]
+      "variants": [{ "id": "var_002", "title": "Estándar" }]
     },
     {
       "id": "prod_003",
@@ -38,15 +30,11 @@
       "descripcion": "Exclusivo oso de peluche con detalles dorados y acabado de lujo. Confeccionado con los mejores materiales y atención al detalle. Una pieza única para ocasiones muy especiales.",
       "precio": 54990,
       "categoria": "Osos",
-      "imagen": "https://images.unsplash.com/photo-1500975852276-9bb85a3aa9f0",
+      "imagen": "/img/3.jpeg",
+      "imagen_url": "/img/3.jpeg",
       "inventario": 10,
       "destacado": true,
-      "variants": [
-        {
-          "id": "var_003",
-          "title": "Estándar"
-        }
-      ]
+      "variants": [{ "id": "var_003", "title": "Estándar" }]
     },
     {
       "id": "prod_004",
@@ -54,15 +42,11 @@
       "descripcion": "Conjunto elegante de accesorios decorativos que incluye velas aromáticas, portarretratos y elementos ornamentales. Perfecto para crear un ambiente romántico y acogedor.",
       "precio": 34990,
       "categoria": "Accesorios",
-      "imagen": "https://images.unsplash.com/photo-1451487680691-81ce9cc0931a",
+      "imagen": "/img/4.jpeg",
+      "imagen_url": "/img/4.jpeg",
       "inventario": 20,
       "destacado": false,
-      "variants": [
-        {
-          "id": "var_004",
-          "title": "Estándar"
-        }
-      ]
+      "variants": [{ "id": "var_004", "title": "Estándar" }]
     },
     {
       "id": "prod_005",
@@ -70,15 +54,11 @@
       "descripcion": "Espectacular arreglo que combina flores frescas de temporada con un tierno oso de peluche. Presentación premium en caja decorativa. El detalle más completo para expresar tus sentimientos.",
       "precio": 69990,
       "categoria": "Decoraciones",
-      "imagen": "https://images.unsplash.com/photo-1577742524204-7c5eb028b078",
+      "imagen": "/img/5.jpeg",
+      "imagen_url": "/img/5.jpeg",
       "inventario": 8,
       "destacado": true,
-      "variants": [
-        {
-          "id": "var_005",
-          "title": "Estándar"
-        }
-      ]
+      "variants": [{ "id": "var_005", "title": "Estándar" }]
     },
     {
       "id": "prod_006",
@@ -86,15 +66,11 @@
       "descripcion": "Servicio profesional de personalización para cualquiera de nuestros productos. Incluye grabado, bordado o impresión de nombres, fechas y mensajes especiales. Haz tu regalo verdaderamente único.",
       "precio": 19990,
       "categoria": "Servicios",
-      "imagen": "https://images.unsplash.com/photo-1677414129280-2a0545a774f2",
+      "imagen": "/img/6.jpeg",
+      "imagen_url": "/img/6.jpeg",
       "inventario": 100,
       "destacado": false,
-      "variants": [
-        {
-          "id": "var_006",
-          "title": "Estándar"
-        }
-      ]
+      "variants": [{ "id": "var_006", "title": "Estándar" }]
     }
   ]
 }

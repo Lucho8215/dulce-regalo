@@ -11,13 +11,8 @@ import { Link } from 'react-router-dom';
 
 // Componente de tarjeta de producto con efectos hover y animaciones
 const ProductCard = ({ product, onAddToCart }) => {
-  // Función para formatear el precio como moneda USD
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('es-MX', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(price);
-  };
+  const formatPrice = (price) =>
+    new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(price);
 
   // Maneja el clic en agregar al carrito
   const handleAddToCart = (e) => {
@@ -41,12 +36,15 @@ const ProductCard = ({ product, onAddToCart }) => {
         <div className="bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-border">
           {/* Contenedor de imagen con overlay en hover */}
           <div className="relative overflow-hidden aspect-square">
-            {/* Imagen del producto con zoom en hover */}
-            <img
-              src={product.imagen || product.image}
-              alt={product.nombre || product.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+            {(product.imagen_url || product.imagen || product.image) ? (
+              <img
+                src={product.imagen_url || product.imagen || product.image}
+                alt={product.nombre || product.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            ) : (
+              <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-sm">Sin imagen</div>
+            )}
             
             {/* Badge "Destacado" si el producto lo es */}
             {product.destacado && (
@@ -102,7 +100,7 @@ const ProductCard = ({ product, onAddToCart }) => {
             <div className="flex items-center justify-between">
               {/* Precio en rosa destacado */}
               <span className="text-2xl font-bold text-primary">
-                {formatPrice(product.precio || product.price_in_cents / 100)}
+                {formatPrice(product.precio)}
               </span>
               
               {/* Indicador de stock */}

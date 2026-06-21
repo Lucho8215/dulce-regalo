@@ -1,50 +1,50 @@
-# 🛍️ Dulce Regalo - Tienda de Regalos
+# Dulce Regalo - Gift Store
 
-Una tienda en línea moderna de regalos y detalles especiales construida con React, Vite y Tailwind CSS.
+An online gift shop built with React, Vite, and Tailwind CSS.
 
-## 📋 Tabla de Contenidos
+## Table of Contents
 
-- [Descripción del Proyecto](#descripción-del-proyecto)
-- [Tecnologías Utilizadas](#tecnologías-utilizadas)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Instalación](#instalación)
-- [Scripts Disponibles](#scripts-disponibles)
-- [Guía de Uso](#guía-de-uso)
-- [Componentes Principales](#componentes-principales)
-- [Páginas y Rutas](#páginas-y-rutas)
-- [Hook Personalizado - Carrito](#hook-personalizado---carrito)
-- [Personalización](#personalización)
-- [Contribuir](#contribuir)
-
----
-
-## 📖 Descripción del Proyecto
-
-Este proyecto es una **tienda de regalos en línea** que permite a los usuarios:
-- Navegar productos destacados y por categorías
-- Ver detalles de cada producto
-- Agregar productos al carrito de compras
-- Realizar pedidos con formulario de checkout
-- Acceder a un panel de administración para gestionar productos e inventario
+- [Project Description](#project-description)
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Available Scripts](#available-scripts)
+- [Usage Guide](#usage-guide)
+- [Main Components](#main-components)
+- [Pages and Routes](#pages-and-routes)
+- [Custom Hook - Cart](#custom-hook---cart)
+- [Customization](#customization)
+- [Contributing](#contributing)
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Project Description
 
-| Tecnología | Versión | Propósito |
-|------------|---------|-----------|
-| React | ^18.3.1 | Biblioteca de interfaz de usuario |
-| Vite | ^7.3.1 | Build tool y dev server |
-| Tailwind CSS | ^3.4.17 | Framework de estilos CSS |
-| React Router DOM | ^7.17.0 | Enrutamiento de páginas |
-| Framer Motion | ^11.15.0 | Animaciones |
-| Radix UI | Varios | Componentes UI accesibles |
-| React Helmet | ^6.1.0 | Meta tags para SEO |
-| Sonner | ^2.0.7 | Notificaciones toast |
+This project is an online gift shop that allows users to:
+- Browse featured products and categories
+- View product details
+- Add products to the shopping cart
+- Place orders using a checkout form
+- Access an admin panel to manage products and inventory
 
 ---
 
-## 📁 Estructura del Proyecto
+## Technologies Used
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| React | ^18.3.1 | UI library |
+| Vite | ^7.3.1 | Build tool and dev server |
+| Tailwind CSS | ^3.4.17 | CSS utility framework |
+| React Router DOM | ^7.17.0 | Routing |
+| Framer Motion | ^11.15.0 | Animations |
+| Radix UI | Various | Accessible UI components |
+| React Helmet | ^6.1.0 | SEO meta tags |
+| Sonner | ^2.0.7 | Toast notifications |
+
+---
+
+## Project Structure
 
 ```
 web/
@@ -54,166 +54,169 @@ web/
 ├── tailwind.config.js      # Configuración de Tailwind
 ├── postcss.config.js       # Configuración de PostCSS
 └── src/
-    ├── main.jsx            # Punto de entrada React
-    ├── App.jsx             # Componente principal con rutas
-    ├── index.css           # Estilos globales
-    ├── hooks/              # Hooks personalizados
-    │   ├── useCart.jsx     # Hook del carrito de compras
-    │   └── use-toast.js    # Hook para notificaciones
-    ├── lib/                # Utilidades
-    │   └── utils.js        # Funciones helper
-    ├── components/         # Componentes reutilizables
-    │   ├── Header.jsx      # Cabecera y navegación
-    │   ├── Footer.jsx      # Pie de página
-    │   ├── ProductCard.jsx # Tarjeta de producto
-    │   ├── ShoppingCart.jsx # Carrito lateral
-    │   ├── OrderSummary.jsx # Resumen de orden
-    │   ├── CategoryFilter.jsx # Filtro por categorías
-    │   ├── PriceFilter.jsx # Filtro por precio
-    │   ├── SearchBar.jsx   # Barra de búsqueda
-    │   ├── AdminProductForm.jsx # Formulario admin
-    │   └── AdminInventoryTable.jsx # Tabla de inventario
-    └── pages/              # Páginas de la aplicación
-        ├── HomePage.jsx    # Página principal
-        ├── ProductsPage.jsx # Lista de productos
-        ├── ProductDetailPage.jsx # Detalle de producto
-        ├── CartPage.jsx    # Carrito de compras
-        ├── CheckoutPage.jsx # Proceso de pago
-        ├── SuccessPage.jsx # Confirmación de pedido
-        ├── ContactPage.jsx # Página de contacto
-        ├── AdminPage.jsx   # Panel de administración
-        ├── TermsPage.jsx   # Términos y condiciones
-        └── PrivacyPage.jsx # Política de privacidad
+
+    ├── main.jsx            # React entry point
+      ├── App.jsx             # Main component with routes
+      ├── index.css           # Global styles
+      ├── hooks/              # Custom hooks
+      │   ├── useCart.jsx     # Shopping cart hook
+      │   └── use-toast.js    # Toast notifications hook
+      ├── lib/                # Utilities
+      │   └── utils.js        # Helper functions
+      ├── components/         # Reusable components
+      │   ├── Header.jsx      # Header and navigation
+      │   ├── Footer.jsx      # Footer
+      │   ├── ProductCard.jsx # Product card
+      │   ├── ShoppingCart.jsx # Side cart
+      │   ├── OrderSummary.jsx # Order summary
+      │   ├── CategoryFilter.jsx # Category filter
+      │   ├── PriceFilter.jsx # Price filter
+      │   ├── SearchBar.jsx   # Search bar
+      │   ├── AdminProductForm.jsx # Admin form
+      │   └── AdminInventoryTable.jsx # Inventory table
+      └── pages/              # Application pages
+        ├── HomePage.jsx    # Home page
+        ├── ProductsPage.jsx # Products list
+        ├── ProductDetailPage.jsx # Product detail
+        ├── CartPage.jsx    # Cart page
+        ├── CheckoutPage.jsx # Checkout flow
+        ├── SuccessPage.jsx # Order confirmation
+        ├── ContactPage.jsx # Contact page
+        ├── AdminPage.jsx   # Admin panel
+        ├── TermsPage.jsx   # Terms and conditions
+        └── PrivacyPage.jsx # Privacy policy
 ```
 
 ---
 
-## ⚙️ Instalación
+## Installation
 
-### Requisitos previos
-- Node.js 18 o superior
-- npm o yarn
+### Requirements
+- Node.js 18 or higher
+- npm or yarn
 
-### Pasos de instalación
+### Setup
 
 ```bash
-# 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/dulce-regalo.git
+# 1. Clone the repository
+git clone https://github.com/your-username/dulce-regalo.git
 cd dulce-regalo/web
 
-# 2. Instalar dependencias
+# 2. Install dependencies
 npm install
 
-# 3. Iniciar servidor de desarrollo
+# 3. Start the development server
 npm run dev
 ```
 
-La aplicación estará disponible en `http://localhost:3000`
+The app will be available at `http://localhost:3000`
 
 ---
 
-## 📜 Scripts Disponibles
+## Available Scripts
 
-| Script | Descripción |
+| Script | Description |
 |--------|-------------|
-| `npm run dev` | Inicia el servidor de desarrollo |
-| `npm run build` | Genera build de producción |
-| `npm run start` | Previsualiza el build |
-| `npm run lint` | Ejecuta ESLint para encontrar errores |
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm run start` | Preview the production build |
+| `npm run lint` | Run ESLint |
 
 ---
 
-## 👤 Guía de Uso
+## Usage Guide
 
-### Para Usuarios
+### For Users
 
-1. **Navegar productos**: Visita `/productos` para ver todos los productos
-2. **Filtrar**: Usa los filtros de categoría y precio en la barra lateral
-3. **Buscar**: Escribe en la barra de búsqueda para encontrar productos
-4. **Agregar al carrito**: Haz clic en "Agregar al carrito" en cualquier producto
-5. **Ver carrito**: Haz clic en el ícono del carrito en el header
-6. **Checkout**: Completa el formulario de pago en `/checkout`
-7. **Confirmación**: Recibirás confirmación exitosa en `/success`
+1. Browse products at `/productos`
+2. Filter by category and price in the sidebar
+3. Search using the search bar
+4. Add items to the cart with "Add to cart"
+5. View the cart via the cart icon in the header
+6. Complete checkout at `/checkout`
+7. See confirmation at `/success`
 
-### Para Administradores
+### For Administrators
 
-1. **Acceder al panel**: Ve a `/admin`
-2. **Gestión de productos**: 
-   - Crear nuevos productos con el botón "Nuevo Producto"
-   - Editar productos existentes con el botón de editar
-   - Eliminar productos con el botón de eliminar
-3. **Ver órdenes**: Revisa el historial de pedidos en la pestaña "Órdenes"
-4. **Gestionar inventario**: Actualiza stock en la pestaña "Inventario"
+1. Access the admin panel at `/admin`
+2. Manage products:
+  - Create new products with "New Product"
+  - Edit existing products with the edit button
+  - Delete products with the delete button
+3. View orders in the "Orders" section
+4. Manage inventory in the "Inventory" section
 
 ---
 
-## 🧩 Componentes Principales
+
+## Main Components
 
 ### Header.jsx
-- Logo y nombre de la marca
-- Navegación entre páginas
-- Botón del carrito con contador
-- Menú móvil responsive
+- Brand logo and name
+- Navigation
+- Cart button with counter
+- Responsive mobile menu
 
 ### Footer.jsx
-- Información de contacto
-- Enlaces rápidos
-- Enlaces legales
-- Redes sociales
+- Contact information
+- Quick links
+- Legal links
+- Social media links
 
 ### ProductCard.jsx
-- Muestra información del producto
-- Imagen con efectos hover
-- Precio y stock
-- Botón de agregar al carrito
+- Displays product information
+- Image with hover effects
+- Price and stock
+- Add to cart button
 
 ### ShoppingCart.jsx
-- Panel lateral deslizable
-- Lista de productos en el carrito
-- Controles de cantidad
-- Botón de checkout
+- Slide-out side cart
+- List of cart items
+- Quantity controls
+- Checkout button
 
 ### CategoryFilter.jsx
-- Lista de categorías con checkbox
-- Selección múltiple
-- Contador de selecciones
+- Category list with checkboxes
+- Multiple selection
+- Selection count
 
 ### PriceFilter.jsx
-- Slider para rango de precios
-- Inputs manuales para min/max
-- Botones de aplicar y resetear
+- Price range slider
+- Manual min/max inputs
+- Apply and reset buttons
 
 ---
 
-## 📄 Páginas y Rutas
+## Pages and Routes
 
-| Ruta | Página | Descripción |
+| Route | Page | Description |
 |------|--------|-------------|
-| `/` | HomePage.jsx | Página principal con hero y productos destacados |
-| `/productos` | ProductsPage.jsx | Lista completa de productos con filtros |
-| `/product/:id` | ProductDetailPage.jsx | Detalle individual de un producto |
-| `/carrito` | CartPage.jsx | Carrito de compras con resumen |
-| `/checkout` | CheckoutPage.jsx | Formulario para procesar pedido |
-| `/success` | SuccessPage.jsx | Página de confirmación de pedido |
-| `/contacto` | ContactPage.jsx | Formulario de contacto |
-| `/admin` | AdminPage.jsx | Panel de administración |
-| `/terminos` | TermsPage.jsx | Términos y condiciones |
-| `/privacidad` | PrivacyPage.jsx | Política de privacidad |
+| `/` | HomePage.jsx | Home page with hero and featured products |
+| `/productos` | ProductsPage.jsx | Full products list with filters |
+| `/product/:id` | ProductDetailPage.jsx | Individual product detail |
+| `/carrito` | CartPage.jsx | Shopping cart with summary |
+| `/checkout` | CheckoutPage.jsx | Checkout form |
+| `/success` | SuccessPage.jsx | Order confirmation |
+| `/contacto` | ContactPage.jsx | Contact form |
+| `/admin` | AdminPage.jsx | Admin panel |
+| `/terminos` | TermsPage.jsx | Terms and conditions |
+| `/privacidad` | PrivacyPage.jsx | Privacy policy |
 
 ---
 
-## 🛒 Hook Personalizado - Carrito
 
-El hook `useCart` proporciona:
+## Custom Hook - Cart
 
-- **cartItems**: Array de productos en el carrito
-- **addToCart**: Agregar producto al carrito
-- **removeFromCart**: Eliminar producto del carrito
-- **updateQuantity**: Actualizar cantidad de un producto
-- **clearCart**: Vaciar el carrito
-- **getCartTotal**: Calcular el total del carrito
+The `useCart` hook provides:
 
-Ejemplo de uso:
+- **cartItems**: Array of items in the cart
+- **addToCart**: Add an item to the cart
+- **removeFromCart**: Remove an item from the cart
+- **updateQuantity**: Update item quantity
+- **clearCart**: Clear the cart
+- **getCartTotal**: Calculate the cart total
+
+Example:
 ```jsx
 import { useCart } from '@/hooks/useCart'
 
@@ -225,29 +228,29 @@ function Component() {
 
 ---
 
-## 🎨 Personalización
+## Customization
 
-### Modificar productos
-Edita el archivo `src/data/products.json` para agregar, modificar o eliminar productos.
+### Modify products
+Edit `src/data/products.json` to add, modify, or remove products.
 
-### Cambiar colores
-Modifica las variables CSS en `src/index.css` dentro del bloque `:root`.
+### Change colors
+Adjust CSS variables in `src/index.css` under the `:root` block.
 
-### Agregar categorías
-Actualiza el array `categories` en `src/components/AdminProductForm.jsx` y en los datos de productos.
-
----
-
-## 🤝 Contribuir
-
-1. Fork el repositorio
-2. Crea una rama para tu feature: `git checkout -b feature/nueva-funcionalidad`
-3. Commit tus cambios: `git commit -m 'Agregar nueva funcionalidad'`
-4. Push a la rama: `git push origin feature/nueva-funcionalidad`
-5. Abre un Pull Request
+### Add categories
+Update the `categories` array in `src/components/AdminProductForm.jsx` and in the product data.
 
 ---
 
-## 📝 Licencia
+## Contributing
 
-Este proyecto es de código abierto y está disponible bajo la licencia MIT.
+1. Fork the repository
+2. Create a branch for your feature: `git checkout -b feature/new-feature`
+3. Commit your changes: `git commit -m 'Add new feature'`
+4. Push the branch: `git push origin feature/new-feature`
+5. Open a Pull Request
+
+---
+
+## License
+
+This project is open source and available under the MIT License.

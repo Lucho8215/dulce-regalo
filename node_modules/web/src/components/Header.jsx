@@ -1,28 +1,34 @@
 // Importamos React y useState para manejar estados locales
 import React, { useState } from 'react';
 // Importamos componentes de React Router para navegación
-import { Link, useLocation } from 'react-router-dom';
-// Importamos iconos de lucide-react
-import { ShoppingCart, Menu, X, Heart, User } from 'lucide-react';
-// Importamos el componente Button desde nuestra librería UI
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ShoppingCart, Menu, X, Heart, User, LogOut, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// Importamos el hook del carrito para contar items
 import { useCart } from '@/hooks/useCart';
-// Importamos el componente del carrito lateral
 import ShoppingCartComponent from '@/components/ShoppingCart';
-// Importamos motion y AnimatePresence de framer-motion para animaciones
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '@/hooks/useAuth';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 // Componente de encabezado con navegación y carrito
 const Header = () => {
-  // Hook de ubicación: detecta la ruta actual para resaltar el link activo
   const location = useLocation();
-  // Hook del carrito: obtenemos los items para mostrar contador
+  const navigate = useNavigate();
   const { cartItems } = useCart();
-  // Estado para controlar el menú móvil (visible en pantallas pequeñas)
+  const { session, signOut } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // Estado para controlar el carrito lateral
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
 
   // Calculamos la cantidad total de items en el carrito
   const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -93,14 +99,42 @@ const Header = () => {
                 )}
               </Button>
 
-              {/* Botón de usuario (placeholder - funcionalidad futura) */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hidden sm:flex text-foreground hover:text-primary hover:bg-muted"
-              >
-                <User className="w-5 h-5" />
-              </Button>
+              {/* Botón de usuario */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className={`hidden sm:flex hover:bg-muted ${session ? 'text-primary' : 'text-foreground hover:text-primary'}`}
+                  >
+                    <User className="w-5 h-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  {session ? (
+                    <>
+                      <div className="px-3 py-2 text-xs text-muted-foreground truncate">
+                        {session.user?.email}
+                      </div>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => navigate('/admin')} className="cursor-pointer">
+                        <Settings className="w-4 h-4 mr-2" />
+                        Panel Admin
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer text-destructive focus:text-destructive">
+                        <LogOut className="w-4 h-4 mr-2" />
+                        Cerrar sesión
+                      </DropdownMenuItem>
+                    </>
+                  ) : (
+                    <DropdownMenuItem onClick={() => navigate('/login')} className="cursor-pointer">
+                      <User className="w-4 h-4 mr-2" />
+                      Acceso Admin
+                    </DropdownMenuItem>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               {/* Botón de menú móvil (visible solo en móvil) */}
               <Button

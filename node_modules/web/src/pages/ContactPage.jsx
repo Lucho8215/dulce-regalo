@@ -1,21 +1,25 @@
-// Importamos React y useState
 import React, { useState } from 'react';
-// Importamos Helmet para meta tags SEO
 import { Helmet } from 'react-helmet';
-// Importamos motion para animaciones
 import { motion } from 'framer-motion';
-// Importamos iconos
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-// Importamos componentes UI
+import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-// Importamos componentes propios
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-// Importamos hook toast
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
+
+// ─── Configura aquí tus credenciales de EmailJS ───────────────────────────────
+// 1. Crea cuenta en https://www.emailjs.com (gratis)
+// 2. Crea un Email Service (Gmail, Outlook, etc.)
+// 3. Crea un Email Template con las variables: {{nombre}}, {{email}}, {{asunto}}, {{mensaje}}
+// 4. Copia los IDs y pégalos en el .env
+// ─────────────────────────────────────────────────────────────────────────────
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID  || '';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '';
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY  || '';
 
 // Página de contacto con formulario
 const ContactPage = () => {
@@ -25,11 +29,13 @@ const ContactPage = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
+    telefono: '',
     asunto: '',
     mensaje: ''
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [enviado, setEnviado] = useState(false);
 
   // Maneja cambios en los inputs
   const handleChange = (e) => {
@@ -45,7 +51,7 @@ const ContactPage = () => {
     e.preventDefault();
     
     // Validación: campos requeridos
-    if (!formData.nombre || !formData.email || !formData.asunto || !formData.mensaje) {
+    if (!formData.nombre || !formData.email || !formData.asunto || !formData.mensaje || !formData.telefono) {
       toast({
         title: 'Campos incompletos',
         description: 'Por favor completa todos los campos',
@@ -65,28 +71,29 @@ const ContactPage = () => {
       return;
     }
 
-    // Simulamos envío (1.5 segundos)
     setIsSubmitting(true);
-    
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      toast({
-        title: 'Mensaje enviado',
-        description: 'Gracias por contactarnos. Te responderemos pronto.',
-      });
-      
-      // Limpiamos el formulario
-      setFormData({
-        nombre: '',
-        email: '',
-        asunto: '',
-        mensaje: ''
-      });
+      if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+        throw new Error('EmailJS no está configurado. Agrega las variables VITE_EMAILJS_* al .env');
+      }
+
+      const templateParams = {
+        nombre:   formData.nombre,
+        email:    formData.email,
+        telefono: formData.telefono,
+        asunto:   formData.asunto,
+        mensaje:  formData.mensaje,
+      };
+
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY);
+
+      setEnviado(true);
+      setFormData({ nombre: '', email: '', telefono: '', asunto: '', mensaje: '' });
     } catch (error) {
       toast({
-        title: 'Error',
-        description: 'Hubo un problema al enviar tu mensaje. Intenta nuevamente.',
+        title: 'Error al enviar',
+        description: error.message || 'Hubo un problema. Intenta nuevamente.',
         variant: 'destructive',
       });
     } finally {
@@ -210,6 +217,31 @@ const ContactPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
+                {enviado ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4 }}
+                    className="bg-card rounded-2xl p-10 shadow-lg border border-border flex flex-col items-center justify-center text-center gap-6 min-h-[400px]"
+                  >
+                    <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
+                      <CheckCircle className="w-10 h-10 text-green-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-card-foreground mb-2">¡Mensaje enviado!</h3>
+                      <p className="text-muted-foreground text-lg">
+                        Gracias por contactarnos. Nuestro equipo te responderá pronto.
+                      </p>
+                    </div>
+                    <Button
+                      onClick={() => setEnviado(false)}
+                      variant="outline"
+                      className="mt-2"
+                    >
+                      Enviar otro mensaje
+                    </Button>
+                  </motion.div>
+                ) : (
                 <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 shadow-lg border border-border space-y-6">
                   <h2 className="text-2xl font-bold text-card-foreground mb-6">
                     Envíanos un Mensaje
@@ -243,6 +275,23 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="maria@ejemplo.com"
+                      required
+                      className="mt-1 bg-background text-foreground"
+                    />
+                  </div>
+
+                  {/* Teléfono */}
+                  <div>
+                    <Label htmlFor="telefono" className="text-sm font-medium text-card-foreground">
+                      Teléfono *
+                    </Label>
+                    <Input
+                      id="telefono"
+                      name="telefono"
+                      type="tel"
+                      value={formData.telefono}
+                      onChange={handleChange}
+                      placeholder="+57 300 123 4567"
                       required
                       className="mt-1 bg-background text-foreground"
                     />
@@ -297,6 +346,7 @@ const ContactPage = () => {
                     )}
                   </Button>
                 </form>
+                )}
               </motion.div>
             </div>
           </div>

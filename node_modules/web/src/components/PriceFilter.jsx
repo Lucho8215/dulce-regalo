@@ -62,9 +62,10 @@ const PriceFilter = ({ minPrice = 0, maxPrice = 100, onPriceChange }) => {
 
   // Formatear precio a moneda
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('es-MX', {
+    return new Intl.NumberFormat('es-CO', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'COP',
+      minimumFractionDigits: 0,
     }).format(price);
   };
 

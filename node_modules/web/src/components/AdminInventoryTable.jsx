@@ -56,9 +56,10 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
 
   // Formatear precio
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('es-MX', {
+    return new Intl.NumberFormat('es-CO', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'COP',
+      minimumFractionDigits: 0,
     }).format(price);
   };
 
@@ -107,11 +108,18 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
                   {/* Imagen del producto */}
                   <TableCell>
                     <div className="w-12 h-12 rounded-lg overflow-hidden bg-muted">
-                      <img
-                        src={product.imagen}
-                        alt={product.nombre}
-                        className="w-full h-full object-cover"
-                      />
+                      {(product.imagen_url || product.imagen) ? (
+                        <img
+                          src={product.imagen_url || product.imagen}
+                          alt={product.nombre}
+                          className="w-full h-full object-cover"
+                          onError={(e) => { e.target.style.display = 'none'; }}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <Package className="w-5 h-5 text-muted-foreground/40" />
+                        </div>
+                      )}
                     </div>
                   </TableCell>
                   

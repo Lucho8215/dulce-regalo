@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import BrandLogo from '@/components/BrandLogo';
 
 // Componente de pie de página con información de contacto y enlaces
 const Footer = () => {
@@ -16,12 +17,7 @@ const Footer = () => {
           {/* Columna 1: Información de la marca */}
           <div className="space-y-4">
             {/* Logo y nombre */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
-                <Heart className="w-5 h-5 text-white" fill="white" />
-              </div>
-              <span className="text-xl font-bold">Dulce Regalo</span>
-            </div>
+            <BrandLogo size="sm" showTagline={false} linkTo="/" />
             
             {/* Descripción */}
             <p className="text-sm opacity-90">

@@ -1,5 +1,5 @@
-/* Importamos la fuente Outfit de Google Fonts - moderna y legible */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+/* Fuentes base y marca */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Modak&family=Fredoka+One&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
 
 /* Inyectamos los estilos base, components y utilities de Tailwind CSS */
 @tailwind base;

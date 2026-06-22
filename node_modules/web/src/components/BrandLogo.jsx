@@ -87,21 +87,24 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
     <div style={{ display: 'flex', alignItems: 'center', gap: s.gap }}>
       <LogoIcon size={s.icon} />
       <div style={{ lineHeight: 1 }}>
-       <div
-  style={{
-    // Cambiamos "Great Vibes" por una fuente estilo Timoteo (Fredoka o Titan One)
-    fontFamily: '"Modak", "Fredoka One", cursive',
-    fontSize: s.title,
-    background: 'linear-gradient(135deg, #FF69B4 0%, #FF1493 50%, #c2185b 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    letterSpacing: '0.03em',
-    lineHeight: 1.1,
-  }}
->
-  Dulce Regalo
-</div>
+        <div style={{
+          fontFamily: '"Modak", "Fredoka One", cursive',
+          fontSize: s.title,
+          letterSpacing: '0.03em',
+          lineHeight: 1.1,
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 0,
+        }}>
+          {['D','u','l','c','e',' ','R','e','g','a','l','o'].map((letter, i) => {
+            const colors = ['#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335'];
+            return (
+              <span key={i} style={{ color: letter === ' ' ? 'transparent' : colors[i], display: 'inline-block', width: letter === ' ' ? '0.3em' : 'auto' }}>
+                {letter === ' ' ? ' ' : letter}
+              </span>
+            );
+          })}
+        </div>
         {showTagline && (
           <div
             style={{

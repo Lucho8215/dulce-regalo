@@ -35,8 +35,8 @@ const Footer = () => {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://instagram.com"
-                target="_blank"
+                href="https://www.tiktok.com/@leidypaolacarmonaruiz?_r=1&_t=ZS-97U3pFDCVaG" target="_blank"
+               
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-secondary-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
               >
@@ -101,19 +101,18 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span className="opacity-90">
-                  Av. Principal 123, Perdomo
-                </span>
+                  Calle 63a sur #71h-46, Barrio Perdomo,                </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 flex-shrink-0" />
                 <a href="tel:+313547859" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
-                  +313547859
+                  321 3175459
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 flex-shrink-0" />
                 <a href="mailto:contacto@dulceregalo.com" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
-                  contacto@dulceregalo.com
+                  Lepacaru@gmail.com
                 </a>
               </li>
             </ul>

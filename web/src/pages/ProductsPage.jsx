@@ -17,8 +17,8 @@ import PriceFilter from '@/components/PriceFilter';
 import SearchBar from '@/components/SearchBar';
 // Importamos el Sheet (sidebar móvil) desde UI
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-// Importamos datos de productos
-import productsData from '@/data/products.json';
+// Importamos cliente Supabase
+import { supabase } from '@/lib/supabase';
 // Importamos hooks personalizados
 import { useCart } from '@/hooks/useCart';
 import { useToast } from '@/hooks/use-toast';
@@ -39,19 +39,27 @@ const ProductsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  // Cargar productos y categorías al montar el componente
+  // Cargar productos desde Supabase al montar
   useEffect(() => {
-    const allProducts = productsData.products;
-    setProducts(allProducts);
-    setFilteredProducts(allProducts);
+    supabase
+      .from('products')
+      .select('*')
+      .eq('activo', true)
+      .order('created_at', { ascending: true })
+      .then(({ data, error }) => {
+        if (error) { console.error(error); return; }
+        const allProducts = data || [];
+        setProducts(allProducts);
+        setFilteredProducts(allProducts);
 
-    const uniqueCategories = [...new Set(allProducts.map(p => p.categoria))];
-    setCategories(uniqueCategories);
+        const uniqueCategories = [...new Set(allProducts.map(p => p.categoria).filter(Boolean))];
+        setCategories(uniqueCategories);
 
-    const prices = allProducts.map(p => p.precio);
-    const minPrice = Math.floor(Math.min(...prices));
-    const maxPrice = Math.ceil(Math.max(...prices));
-    setPriceRange([minPrice, maxPrice]);
+        if (allProducts.length > 0) {
+          const prices = allProducts.map(p => p.precio);
+          setPriceRange([Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))]);
+        }
+      });
   }, []);
 
   // Aplicar filtros cuando cambien los criterios
@@ -93,7 +101,7 @@ const ProductsPage = () => {
     const mockProduct = {
       id: product.id,
       title: product.nombre,
-      image: product.imagen
+      image: product.imagen_url
     };
 
     addToCart(mockProduct, mockVariant, 1, product.inventario)

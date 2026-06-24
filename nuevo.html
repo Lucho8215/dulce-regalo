@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Crucial para que acepte tildes y caracteres especiales -->
+    <title>Mi Web con Estilo Timoteo</title>
+    
+    <style>
+        /* 1. Aquí "registras" y codificas la fuente en tu hoja de estilos */
+        @font-face {
+            font-family: 'LetraTimoteo';
+            src: url('fuentes/timoteo.woff2') format('woff2'); /* Asegúrate de que la ruta del archivo sea la correcta */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* 2. Aquí la aplicas a los textos que quieras */
+        .titulo-timoteo {
+            font-family: 'LetraTimoteo', sans-serif;
+            font-size: 48px;
+            color: #ff477e; /* Un color vivo que le va muy bien a ese estilo */
+            text-shadow: 2px 2px 0px #000; /* Un delineado negro típico de las tarjetas Timoteo */
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="titulo-timoteo">¡Feliz Cumpleaños!</h1>
+    <p>Este texto tiene todo el estilo de las tarjetas clásicas.</p>
+
+</body>
+</html>

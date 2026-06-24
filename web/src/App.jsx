@@ -15,6 +15,7 @@ import TermsPage from '@/pages/TermsPage';
 import PrivacyPage from '@/pages/PrivacyPage';
 import AdminPage from '@/pages/AdminPage';
 import LoginPage from '@/pages/LoginPage';
+import PagoExitosoPage from '@/pages/PagoExitosoPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/terminos" element={<TermsPage />} />
           <Route path="/privacidad" element={<PrivacyPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/pago-exitoso" element={<PagoExitosoPage />} />
           <Route
             path="/admin"
             element={

@@ -31,17 +31,15 @@ This project is an online gift shop that allows users to:
 
 ## Technologies Used
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| React | ^18.3.1 | UI library |
-| Vite | ^7.3.1 | Build tool and dev server |
-| Tailwind CSS | ^3.4.17 | CSS utility framework |
-| React Router DOM | ^7.17.0 | Routing |
-| Framer Motion | ^11.15.0 | Animations |
-| Radix UI | Various | Accessible UI components |
-| React Helmet | ^6.1.0 | SEO meta tags |
-| Sonner | ^2.0.7 | Toast notifications |
-
+Tecnología,Versión,Propósito
+React,^18.3.1,Biblioteca de UI
+Vite,^7.3.1,Herramienta de compilación y servidor de desarrollo
+Tailwind CSS,^3.4.17,Framework de utilidades CSS
+React Router DOM,^7.17.0,Enrutamiento
+Framer Motion,^11.15.0,Animaciones
+Radix UI,Varias,Componentes de UI accesibles
+React Helmet,^6.1.0,Etiquetas meta para SEO
+Sonner,^2.0.7,Notificaciones flotantes (toasts)
 ---
 
 ## Project Structure
@@ -98,94 +96,39 @@ web/
 ### Setup
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/dulce-regalo.git
+# 1. Clonar el repositorio
+git clone https://github.com/tu-usuario/dulce-regalo.git
 cd dulce-regalo/web
 
-# 2. Install dependencies
+# 2. Instalar dependencias
 npm install
 
-# 3. Start the development server
+# 3. Iniciar el servidor de desarrollo
 npm run dev
-```
-
-The app will be available at `http://localhost:3000`
-
 ---
 
 ## Available Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start the development server |
-| `npm run build` | Create a production build |
-| `npm run start` | Preview the production build |
-| `npm run lint` | Run ESLint |
+Script,Descripción
+npm run dev,Inicia el servidor de desarrollo
+npm run build,Crea una compilación de producción
+npm run start,Previsualiza la compilación de producción
+npm run lint,Ejecuta ESLint
 
 ---
 
 ## Usage Guide
-
-### For Users
-
-1. Browse products at `/productos`
-2. Filter by category and price in the sidebar
-3. Search using the search bar
-4. Add items to the cart with "Add to cart"
-5. View the cart via the cart icon in the header
-6. Complete checkout at `/checkout`
-7. See confirmation at `/success`
-
-### For Administrators
-
-1. Access the admin panel at `/admin`
-2. Manage products:
-  - Create new products with "New Product"
-  - Edit existing products with the edit button
-  - Delete products with the delete button
-3. View orders in the "Orders" section
-4. Manage inventory in the "Inventory" section
-
----
-
-
-## Main Components
-
-### Header.jsx
-- Brand logo and name
-- Navigation
-- Cart button with counter
-- Responsive mobile menu
-
-### Footer.jsx
-- Contact information
-- Quick links
-- Legal links
-- Social media links
-
-### ProductCard.jsx
-- Displays product information
-- Image with hover effects
-- Price and stock
-- Add to cart button
-
-### ShoppingCart.jsx
-- Slide-out side cart
-- List of cart items
-- Quantity controls
-- Checkout button
-
-### CategoryFilter.jsx
-- Category list with checkboxes
-- Multiple selection
-- Selection count
-
-### PriceFilter.jsx
-- Price range slider
-- Manual min/max inputs
-- Apply and reset buttons
-
----
+Ruta,Página,Descripción
+/HomePage.jsx,Página de inicio con sección hero y productos destacados
+/productos,ProductsPage.jsx,Lista completa de productos con filtros
+/product/:id,ProductDetailPage.jsx,Detalle individual del producto
+/carrito,CartPage.jsx,Carrito de compras con el resumen
+/checkout,CheckoutPage.jsx,Formulario de pago y datos de envío
+/success,SuccessPage.jsx,Confirmación de la orden realizada
+/contacto,ContactPage.jsx,Formulario de contacto
+/admin,AdminPage.jsx,Panel de administración
+/terminos,TermsPage.jsx,Términos y condiciones
+/privacidad,PrivacyPage.jsx,Política de privacidad
 
 ## Pages and Routes
 

@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CreditCard, Lock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { CreditCard } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import OrderSummary from '@/components/OrderSummary';
+import WompiButton from '@/components/WompiButton';
 import { useCart } from '@/hooks/useCart';
 import { useToast } from '@/hooks/use-toast';
 import { createOrder } from '@/lib/api';
@@ -29,6 +29,11 @@ const CheckoutPage = () => {
     notas: '',
   });
   const [isProcessing, setIsProcessing] = useState(false);
+  const [ordenGuardada, setOrdenGuardada] = useState(false);
+
+  // Referencia única para esta orden: usamos timestamp para que nunca se repita
+  // Ejemplo: "DR-1718900000000"  (DR = Dulce Regalo)
+  const referenciaRef = useRef(`DR-${Date.now()}`);
 
   const calculateSubtotal = () =>
     cartItems.reduce((total, item) => {
@@ -62,9 +67,12 @@ const CheckoutPage = () => {
     setIsProcessing(true);
 
     try {
+      // Guardamos la orden en Supabase ANTES de ir a Wompi
+      // así queda registrada aunque el cliente cierre la ventana de pago
       await createOrder(
         {
           ...formData,
+          referencia: referenciaRef.current,  // ← guardamos la referencia
           subtotal: calculateSubtotal(),
           envio: calculateShipping(),
           iva: calculateTax(),
@@ -73,11 +81,11 @@ const CheckoutPage = () => {
         cartItems
       );
 
-      clearCart();
-      toast({ title: 'Pedido realizado', description: 'Tu pedido ha sido procesado exitosamente' });
-      navigate('/success');
+      // Marcamos que la orden ya fue guardada → el botón Wompi se habilita
+      setOrdenGuardada(true);
+      toast({ title: 'Datos guardados', description: 'Ahora completa el pago con Wompi.' });
     } catch (error) {
-      toast({ title: 'Error', description: 'Hubo un problema al procesar tu pedido. Intenta nuevamente.', variant: 'destructive' });
+      toast({ title: 'Error', description: 'Hubo un problema al guardar el pedido. Intenta nuevamente.', variant: 'destructive' });
     } finally {
       setIsProcessing(false);
     }
@@ -162,22 +170,42 @@ const CheckoutPage = () => {
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t border-border">
-                    <Button
-                      type="submit"
-                      disabled={isProcessing}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.98]"
-                    >
-                      {isProcessing ? 'Procesando...' : (
-                        <>
-                          <Lock className="w-5 h-5 mr-2" />
-                          Realizar Pedido
-                        </>
-                      )}
-                    </Button>
-                    <div className="flex items-center justify-center gap-2 mt-4 text-xs text-muted-foreground">
+                  <div className="pt-6 border-t border-border space-y-4">
+
+                    {/* PASO 1: Guardar la orden (solo si aún no se guardó) */}
+                    {!ordenGuardada && (
+                      <button
+                        type="submit"
+                        disabled={isProcessing}
+                        className="w-full bg-foreground hover:bg-foreground/90 text-background font-semibold py-4 text-base rounded-xl transition-all"
+                      >
+                        {isProcessing ? 'Guardando...' : '1. Confirmar datos del pedido'}
+                      </button>
+                    )}
+
+                    {/* PASO 2: Botón Wompi (aparece después de guardar la orden) */}
+                    {ordenGuardada && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                      >
+                        <p className="text-sm text-green-600 font-medium mb-3 text-center">
+                          ✅ Datos guardados — ahora completa el pago:
+                        </p>
+                        {/* WompiButton recibe todo lo necesario para el pago */}
+                        <WompiButton
+                          totalCOP={calculateTotal()}
+                          referencia={referenciaRef.current}
+                          email={formData.email}
+                          nombre={formData.nombre}
+                          disabled={false}
+                        />
+                      </motion.div>
+                    )}
+
+                    <div className="flex items-center justify-center gap-2 mt-2 text-xs text-muted-foreground">
                       <CreditCard className="w-4 h-4" />
-                      <span>Pago 100% seguro y encriptado</span>
+                      <span>Pago seguro — PSE, tarjeta, Nequi, Daviplata</span>
                     </div>
                   </div>
                 </motion.form>

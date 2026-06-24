@@ -83,12 +83,15 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
 
   const s = sizes[size] || sizes.md;
 
-  const content = (
+ const content = (
     <div style={{ display: 'flex', alignItems: 'center', gap: s.gap }}>
       <LogoIcon size={s.icon} />
       <div style={{ lineHeight: 1 }}>
+       
         <div style={{
-          fontFamily: '"Modak", "Fredoka One", cursive',
+         
+          fontFamily: '"Modak", "Timothies por Blogger", cursive',
+          borderRadius: {lg: "var(--radius)"}[size],
           fontSize: s.title,
           letterSpacing: '0.03em',
           lineHeight: 1.1,

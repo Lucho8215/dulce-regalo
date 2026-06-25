@@ -85,7 +85,7 @@ const WompiButton = ({ totalCOP, referencia, email, nombre, disabled = false }) 
   return (
     <form
       action="https://checkout.wompi.co/p/"  // URL oficial de checkout de Wompi
-      method="GET"                            // GET: parámetros van en la URL
+      method="GET"                            // GET requerido por Wompi — parámetros en URL
     >
       {/* Llave pública: identifica tu cuenta Wompi */}
       <input type="hidden" name="public-key"          value={publicKey} />
@@ -103,13 +103,10 @@ const WompiButton = ({ totalCOP, referencia, email, nombre, disabled = false }) 
       <input type="hidden" name="signature:integrity"  value={signature} />
 
       {/* Email del cliente — Wompi lo muestra en su pantalla */}
-      <input type="hidden" name="customer-email"       value={email} />
-
-      {/* Nombre del cliente */}
-      <input type="hidden" name="customer-full-name"   value={nombre} />
+      <input type="hidden" name="customer-email"  value={email} />
 
       {/* URL de retorno tras pagar o cancelar */}
-      <input type="hidden" name="redirect-url"         value={redirectUrl} />
+      <input type="hidden" name="redirect-url"    value={redirectUrl} />
 
       {/* Botón de pago — se deshabilita si aún no se calculó la firma */}
       <button

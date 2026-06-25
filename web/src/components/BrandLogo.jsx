@@ -1,13 +1,14 @@
 import React from 'react';
 
 const TAGLINE_ANIM = `
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @keyframes shimmerRed {
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
 @keyframes floatTag {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-2px); }
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50%       { transform: translateY(-3px) rotate(0.5deg); }
 }
 @keyframes letterPop {
   0%, 100% { transform: scale(1) rotate(0deg); }
@@ -95,24 +96,24 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
             ))}
           </div>
 
-          {/* Tagline "Detalles con amor" — efecto shimmer rojo */}
+          {/* Tagline "Detalles con amor" — script delgada con shimmer */}
           {showTagline && (
             <div style={{
-              fontFamily: '"Playfair Display", Georgia, serif',
-              fontSize: s.tagline,
-              fontStyle: 'italic',
+              fontFamily: '"Great Vibes", cursive',
+              fontSize: `calc(${s.tagline} * 1.9)`,
               fontWeight: 400,
-              letterSpacing: '0.18em',
-              marginTop: '4px',
-              background: 'linear-gradient(90deg, #c0392b 0%, #ff6b6b 30%, #e91e8c 50%, #ff6b6b 70%, #c0392b 100%)',
+              letterSpacing: '0.05em',
+              marginTop: '2px',
+              lineHeight: 1,
+              background: 'linear-gradient(90deg, #c0392b 0%, #ff6b6b 25%, #e91e8c 50%, #ff6b6b 75%, #c0392b 100%)',
               backgroundSize: '200% auto',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              animation: 'shimmerRed 3s linear infinite, floatTag 3s ease-in-out infinite',
+              animation: 'shimmerRed 3.5s linear infinite, floatTag 4s ease-in-out infinite',
               display: 'inline-block',
             }}>
-              ✦ Detalles con amor ✦
+              Detalles con amor
             </div>
           )}
         </div>

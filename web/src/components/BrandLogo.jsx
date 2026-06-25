@@ -41,17 +41,9 @@ const LogoIcon = ({ size = 48 }) => (
     <rect x="8" y="27" width="48" height="4" fill="url(#ribbonGrad)" opacity="0.85" />
 
     {/* Lazo izquierdo */}
-    <path
-      d="M32 24 C24 14 12 12 14 20 C16 26 26 24 32 24Z"
-      fill="#FF1493"
-      opacity="0.9"
-    />
+    <path d="M32 24 C24 14 12 12 14 20 C16 26 26 24 32 24Z" fill="#FF1493" opacity="0.9" />
     {/* Lazo derecho */}
-    <path
-      d="M32 24 C40 14 52 12 50 20 C48 26 38 24 32 24Z"
-      fill="#FF1493"
-      opacity="0.9"
-    />
+    <path d="M32 24 C40 14 52 12 50 20 C48 26 38 24 32 24Z" fill="#FF1493" opacity="0.9" />
     {/* Centro del lazo */}
     <circle cx="32" cy="24" r="4" fill="#FF69B4" />
     <circle cx="32" cy="24" r="2.5" fill="#fff" opacity="0.6" />
@@ -73,51 +65,56 @@ const LogoIcon = ({ size = 48 }) => (
   </svg>
 );
 
-// Componente de marca completo: logo + texto
 const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
   const sizes = {
-    sm: { icon: 36, title: '1.8rem', tagline: '0.65rem', gap: '10px' },
-    md: { icon: 48, title: '2.4rem', tagline: '0.72rem', gap: '12px' },
-    lg: { icon: 64, title: '3.2rem', tagline: '0.85rem', gap: '14px' },
+    sm: { icon: 38,  title: '2rem',   tagline: '0.68rem', gap: '10px' },
+    md: { icon: 54,  title: '3rem',   tagline: '0.8rem',  gap: '13px' },
+    lg: { icon: 68,  title: '3.6rem', tagline: '0.92rem', gap: '15px' },
   };
 
   const s = sizes[size] || sizes.md;
 
- const content = (
+  const colors = ['#E91E8C','#FF5722','#FFC107','#4CAF50','#E91E8C','#E91E8C','#2196F3','#FF5722','#9C27B0','#E91E8C','#FF5722','#4CAF50'];
+
+  const content = (
     <div style={{ display: 'flex', alignItems: 'center', gap: s.gap }}>
       <LogoIcon size={s.icon} />
       <div style={{ lineHeight: 1 }}>
-       
         <div style={{
           fontFamily: '"Modak", "Fredoka One", cursive',
           fontSize: s.title,
-          letterSpacing: '0.03em',
+          fontWeight: 900,
+          letterSpacing: '0.04em',
           lineHeight: 1.1,
           display: 'flex',
           flexWrap: 'wrap',
           gap: 0,
+          filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.15))',
         }}>
-          {['D','u','l','c','e',' ','R','e','g','a','l','o'].map((letter, i) => {
-            const colors = ['#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335'];
-            return (
-              <span key={i} style={{ color: letter === ' ' ? 'transparent' : colors[i], display: 'inline-block', width: letter === ' ' ? '0.3em' : 'auto' }}>
-                {letter === ' ' ? ' ' : letter}
-              </span>
-            );
-          })}
+          {['D','u','l','c','e',' ','R','e','g','a','l','o'].map((letter, i) => (
+            <span
+              key={i}
+              style={{
+                color: letter === ' ' ? 'transparent' : colors[i],
+                display: 'inline-block',
+                width: letter === ' ' ? '0.28em' : 'auto',
+              }}
+            >
+              {letter}
+            </span>
+          ))}
         </div>
         {showTagline && (
-          <div
-            style={{
-              fontFamily: '"Playfair Display", serif',
-              fontSize: s.tagline,
-              fontStyle: 'italic',
-              color: '#FF69B4',
-              opacity: 0.85,
-              letterSpacing: '0.12em',
-              marginTop: '2px',
-            }}
-          >
+          <div style={{
+            fontFamily: '"Playfair Display", serif',
+            fontSize: s.tagline,
+            fontStyle: 'italic',
+            fontWeight: 600,
+            color: '#E91E8C',
+            opacity: 0.9,
+            letterSpacing: '0.15em',
+            marginTop: '3px',
+          }}>
             Detalles con amor
           </div>
         )}

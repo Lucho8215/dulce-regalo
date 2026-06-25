@@ -87,8 +87,6 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
                   color: letter === ' ' ? 'transparent' : colors[i],
                   display: 'inline-block',
                   width: letter === ' ' ? '0.28em' : 'auto',
-                  animation: letter !== ' ' ? `letterPop ${2 + (i * 0.15)}s ease-in-out infinite` : 'none',
-                  animationDelay: `${i * 0.08}s`,
                 }}
               >
                 {letter}

@@ -35,7 +35,7 @@ const ProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 100]);
+  const [priceRange, setPriceRange] = useState([0, 9999999]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -55,10 +55,8 @@ const ProductsPage = () => {
         const uniqueCategories = [...new Set(allProducts.map(p => p.categoria).filter(Boolean))];
         setCategories(uniqueCategories);
 
-        if (allProducts.length > 0) {
-          const prices = allProducts.map(p => p.precio);
-          setPriceRange([Math.floor(Math.min(...prices)), Math.ceil(Math.max(...prices))]);
-        }
+        // Precio inicial sin filtro (el PriceFilter maneja los rangos)
+        setPriceRange([0, 9999999]);
       });
   }, []);
 
@@ -107,8 +105,8 @@ const ProductsPage = () => {
     addToCart(mockProduct, mockVariant, 1, product.inventario)
       .then(() => {
         toast({
-          title: 'Producto agregado',
-          description: `${product.nombre} se agregó al carrito`,
+          title: '¡Producto seleccionado exitosamente! 🎁',
+          description: `${product.nombre} fue agregado a tu carrito`,
         });
       })
       .catch((error) => {
@@ -176,11 +174,7 @@ const ProductsPage = () => {
                       selectedCategories={selectedCategories}
                       onCategoryChange={setSelectedCategories}
                     />
-                    <PriceFilter
-                      minPrice={priceRange[0]}
-                      maxPrice={priceRange[1]}
-                      onPriceChange={setPriceRange}
-                    />
+                    <PriceFilter onPriceChange={setPriceRange} />
                   </div>
                 </SheetContent>
               </Sheet>
@@ -195,11 +189,7 @@ const ProductsPage = () => {
                   selectedCategories={selectedCategories}
                   onCategoryChange={setSelectedCategories}
                 />
-                <PriceFilter
-                  minPrice={priceRange[0]}
-                  maxPrice={priceRange[1]}
-                  onPriceChange={setPriceRange}
-                />
+                <PriceFilter onPriceChange={setPriceRange} />
               </aside>
 
               {/* Grid de productos */}

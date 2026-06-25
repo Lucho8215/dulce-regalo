@@ -84,10 +84,11 @@ const OrderSummary = ({ cartItems, subtotal, shipping, tax, total }) => {
             {shipping === 0 ? 'Gratis' : formatCOP(shipping)}
           </span>
         </div>
-        <div className="flex justify-between text-sm">
+        {/* IVA oculto por el momento — descomentar cuando se active */}
+        {/* <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">IVA (19%)</span>
           <span className="font-medium text-card-foreground">{formatCOP(tax)}</span>
-        </div>
+        </div> */}
       </div>
 
       <Separator className="my-6" />

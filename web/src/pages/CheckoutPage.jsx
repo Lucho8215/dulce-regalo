@@ -72,8 +72,8 @@ const CheckoutPage = () => {
     }, 0);
 
   const calculateShipping = () => entregaSeleccionada?.precio ?? 0;
-  const calculateTax = () => calculateSubtotal() * 0.19;
-  const calculateTotal = () => calculateSubtotal() + calculateShipping() + calculateTax();
+  const calculateTax = () => 0; // IVA oculto por el momento — cambiar a: calculateSubtotal() * 0.19
+  const calculateTotal = () => calculateSubtotal() + calculateShipping();
 
   const handleChange = (e) => {
     const { name, value } = e.target;

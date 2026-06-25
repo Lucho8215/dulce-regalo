@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 import OrderSummary from '@/components/OrderSummary';
 import WompiButton from '@/components/WompiButton';
 import { useCart } from '@/hooks/useCart';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { createOrder } from '@/lib/api';
 
 const OPCIONES_ENTREGA = [
@@ -44,7 +44,6 @@ const OPCIONES_ENTREGA = [
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { cartItems, clearCart } = useCart();
-  const { toast } = useToast();
 
   const [tipoEntrega, setTipoEntrega] = useState('bogota');
   const [formData, setFormData] = useState({
@@ -86,13 +85,13 @@ const CheckoutPage = () => {
     const necesitaDireccion = tipoEntrega !== 'tienda';
     if (!formData.nombre || !formData.email || !formData.telefono ||
         (necesitaDireccion && (!formData.direccion || !formData.ciudad || !formData.codigoPostal))) {
-      toast({ title: 'Campos incompletos', description: 'Por favor completa todos los campos requeridos', variant: 'destructive' });
+      toast.error('Campos incompletos', { description: 'Por favor completa todos los campos requeridos' });
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      toast({ title: 'Email inválido', description: 'Por favor ingresa un email válido', variant: 'destructive' });
+      toast.error('Email inválido', { description: 'Por favor ingresa un email válido' });
       return;
     }
 
@@ -116,9 +115,9 @@ const CheckoutPage = () => {
 
       // Marcamos que la orden ya fue guardada → el botón Wompi se habilita
       setOrdenGuardada(true);
-      toast({ title: 'Datos guardados', description: 'Ahora completa el pago con Wompi.' });
+      toast.success('Datos guardados', { description: 'Ahora completa el pago con Wompi.' });
     } catch (error) {
-      toast({ title: 'Error', description: 'Hubo un problema al guardar el pedido. Intenta nuevamente.', variant: 'destructive' });
+      toast.error('Error al guardar el pedido', { description: error?.message || 'Hubo un problema. Intenta nuevamente.' });
     } finally {
       setIsProcessing(false);
     }

@@ -17,12 +17,14 @@ import AdminPage from '@/pages/AdminPage';
 import LoginPage from '@/pages/LoginPage';
 import PagoExitosoPage from '@/pages/PagoExitosoPage';
 import CatalogoPage from '@/pages/CatalogoPage';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <ScrollToTop />
+        <WhatsAppButton />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/productos" element={<ProductsPage />} />

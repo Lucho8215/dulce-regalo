@@ -1,122 +1,146 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Lock } from 'lucide-react';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ¿QUÉ ES WOMPI?
-// Wompi es una pasarela de pagos colombiana (de Bancolombia) que permite
-// recibir pagos por PSE, tarjeta de crédito/débito, Nequi y Daviplata.
-// Su forma más sencilla de usar es un formulario HTML que redirige al
-// cliente a la página de pago de Wompi — sin necesidad de servidor propio.
+// WompiButton — Botón de pago con Wompi (pasarela colombiana de Bancolombia)
+//
+// ¿Cómo funciona?
+//   1. Calcula SHA-256 de: referencia + monto_centavos + "COP" + secreto_integridad
+//   2. Envía ese hash como "signature:integrity" a Wompi (obligatorio desde 2023)
+//   3. Wompi valida la firma antes de procesar el pago
+//
+// Variables de entorno necesarias en .env y en Vercel:
+//   VITE_WOMPI_PUBLIC_KEY       → pub_test_... o pub_prod_... (llave pública)
+//   VITE_WOMPI_INTEGRITY_SECRET → test_integrity_... o prod_integrity_...
+//
+// Para pasar a producción: reemplazar ambas llaves por las llaves "prod_"
 // ─────────────────────────────────────────────────────────────────────────────
+
+// Calcula SHA-256 usando la API nativa del navegador (Web Crypto API)
+// Entrada: string con referencia + monto + moneda + secreto concatenados
+// Salida: hash en hexadecimal que Wompi valida
+async function sha256hex(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
 
 // ┌─────────────────────────────────────────────────────┐
 // │  PROPS que recibe este componente:                  │
 // │  • totalCOP    → valor total en pesos colombianos   │
-// │  • referencia  → ID único de la orden               │
+// │  • referencia  → ID único de la orden (ej: DR-123)  │
 // │  • email       → correo del cliente                 │
-// │  • nombre      → nombre del cliente                 │
+// │  • nombre      → nombre completo del cliente        │
 // │  • disabled    → bloquea el botón si falta info     │
 // └─────────────────────────────────────────────────────┘
 const WompiButton = ({ totalCOP, referencia, email, nombre, disabled = false }) => {
 
-  // ── 1. Leer la llave pública desde el archivo .env ──────────────────────
-  // La llave pública (pub_test_ o pub_prod_) identifica tu negocio en Wompi.
-  // NUNCA uses la llave privada (prv_...) aquí — esa es solo para el servidor.
-  const publicKey = import.meta.env.VITE_WOMPI_PUBLIC_KEY || '';
+  // ── Leer llaves desde .env ───────────────────────────────────────────────
+  // publicKey: identifica tu cuenta en Wompi (no es secreta)
+  // integritySecret: se usa solo para calcular el hash (no se envía directo)
+  const publicKey       = import.meta.env.VITE_WOMPI_PUBLIC_KEY       || '';
+  const integritySecret = import.meta.env.VITE_WOMPI_INTEGRITY_SECRET || '';
 
-  // ── 2. Convertir COP a centavos ──────────────────────────────────────────
-  // Wompi exige que el monto llegue en CENTAVOS (no en pesos completos).
-  // Ejemplo: $50.000 COP → 5.000.000 centavos
+  // ── Convertir COP a centavos ─────────────────────────────────────────────
+  // Wompi exige el monto en centavos. $50.000 COP → 5.000.000 centavos
   const amountInCents = Math.round(totalCOP * 100);
 
-  // ── 3. URL de retorno ────────────────────────────────────────────────────
-  // Después de que el cliente paga (o cancela), Wompi lo redirige aquí.
-  // En desarrollo usamos localhost; en producción cambia por tu dominio real.
+  // ── URL a donde vuelve el cliente tras pagar ─────────────────────────────
   const redirectUrl = `${window.location.origin}/pago-exitoso`;
 
-  // ── 4. Si no hay llave configurada, mostrar advertencia ──────────────────
+  // ── Estado para guardar el hash calculado ───────────────────────────────
+  const [signature, setSignature] = useState('');
+
+  // ── Calcular la firma cada vez que cambian referencia o monto ───────────
+  // Fórmula: SHA256( referencia + amountInCents + "COP" + integritySecret )
+  useEffect(() => {
+    if (!integritySecret || !referencia || !amountInCents) return;
+
+    const cadena = `${referencia}${amountInCents}COP${integritySecret}`;
+    sha256hex(cadena).then(setSignature);
+  }, [referencia, amountInCents, integritySecret]);
+
+  // ── Si falta la llave pública mostrar advertencia ────────────────────────
   if (!publicKey) {
     return (
-      <div style={{
-        background: '#fef3c7',
-        border: '1px solid #fde68a',
-        borderRadius: '8px',
-        padding: '12px 16px',
-        fontSize: '13px',
-        color: '#92400e'
-      }}>
-        ⚠️ Falta <strong>VITE_WOMPI_PUBLIC_KEY</strong> en el archivo .env
+      <div style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '8px', padding: '12px 16px', fontSize: '13px', color: '#92400e' }}>
+        ⚠️ Falta <strong>VITE_WOMPI_PUBLIC_KEY</strong> en el archivo .env y en Vercel
       </div>
     );
   }
 
-  // ── 5. El formulario que hace la magia ───────────────────────────────────
-  // Este formulario usa method="GET" y action apuntando a Wompi.
-  // Cuando el cliente hace clic en "Pagar", el navegador envía todos los
-  // campos como parámetros en la URL y Wompi muestra su pantalla de pago.
+  // ── Si falta el secreto de integridad mostrar advertencia ────────────────
+  if (!integritySecret) {
+    return (
+      <div style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '8px', padding: '12px 16px', fontSize: '13px', color: '#92400e' }}>
+        ⚠️ Falta <strong>VITE_WOMPI_INTEGRITY_SECRET</strong> en el archivo .env y en Vercel.<br />
+        Encuéntralo en: Wompi → Desarrolladores → Secretos → Integridad → Mostrar
+      </div>
+    );
+  }
+
+  // ── Formulario GET que redirige a la pantalla de pago de Wompi ──────────
   return (
     <form
-      action="https://checkout.wompi.co/p/"  // ← URL de pago de Wompi
-      method="GET"                            // ← GET porque son parámetros de URL
+      action="https://checkout.wompi.co/p/"  // URL oficial de checkout de Wompi
+      method="GET"                            // GET: parámetros van en la URL
     >
-      {/* ── Llave pública: identifica tu cuenta Wompi ── */}
-      <input type="hidden" name="public-key"       value={publicKey} />
+      {/* Llave pública: identifica tu cuenta Wompi */}
+      <input type="hidden" name="public-key"          value={publicKey} />
 
-      {/* ── Moneda: siempre COP para Colombia ── */}
-      <input type="hidden" name="currency"          value="COP" />
+      {/* Moneda: siempre COP para Colombia */}
+      <input type="hidden" name="currency"             value="COP" />
 
-      {/* ── Monto total en centavos ── */}
-      <input type="hidden" name="amount-in-cents"   value={amountInCents} />
+      {/* Monto en centavos: $50.000 COP = 5000000 centavos */}
+      <input type="hidden" name="amount-in-cents"      value={amountInCents} />
 
-      {/* ── Referencia única: para identificar esta orden en tu dashboard ── */}
-      <input type="hidden" name="reference"         value={referencia} />
+      {/* Referencia única de la orden (ej: DR-1718900000000) */}
+      <input type="hidden" name="reference"            value={referencia} />
 
-      {/* ── Email del cliente: Wompi lo muestra en su pantalla de pago ── */}
-      <input type="hidden" name="customer-email"    value={email} />
+      {/* Firma SHA-256 obligatoria desde 2023 — calculada arriba */}
+      <input type="hidden" name="signature:integrity"  value={signature} />
 
-      {/* ── Nombre del cliente (opcional pero útil) ── */}
-      <input type="hidden" name="customer-full-name" value={nombre} />
+      {/* Email del cliente — Wompi lo muestra en su pantalla */}
+      <input type="hidden" name="customer-email"       value={email} />
 
-      {/* ── URL de retorno: a dónde vuelve el cliente tras pagar ── */}
-      <input type="hidden" name="redirect-url"      value={redirectUrl} />
+      {/* Nombre del cliente */}
+      <input type="hidden" name="customer-full-name"   value={nombre} />
 
-      {/* ── Botón de envío: estilizado para que se vea igual al resto ── */}
+      {/* URL de retorno tras pagar o cancelar */}
+      <input type="hidden" name="redirect-url"         value={redirectUrl} />
+
+      {/* Botón de pago — se deshabilita si aún no se calculó la firma */}
       <button
         type="submit"
-        disabled={disabled}
+        disabled={disabled || !signature}  // espera a que el hash esté listo
         style={{
           width: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '8px',
-          background: disabled ? '#d1d5db' : 'linear-gradient(135deg, #FF69B4, #FF1493)',
+          background: (disabled || !signature) ? '#d1d5db' : 'linear-gradient(135deg, #FF69B4, #FF1493)',
           color: 'white',
           border: 'none',
           borderRadius: '12px',
           padding: '18px 24px',
           fontSize: '17px',
           fontWeight: '600',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          boxShadow: disabled ? 'none' : '0 4px 14px rgba(255,105,180,0.4)',
+          cursor: (disabled || !signature) ? 'not-allowed' : 'pointer',
+          boxShadow: (disabled || !signature) ? 'none' : '0 4px 14px rgba(255,105,180,0.4)',
           transition: 'all 0.2s',
           fontFamily: 'inherit',
         }}
-        onMouseOver={e => { if (!disabled) e.currentTarget.style.transform = 'translateY(-1px)'; }}
+        onMouseOver={e => { if (!disabled && signature) e.currentTarget.style.transform = 'translateY(-1px)'; }}
         onMouseOut={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
       >
-        {/* Ícono de candado = seguridad */}
         <Lock size={18} />
-        Pagar con PSE / Tarjeta
+        {!signature ? 'Preparando pago...' : 'Pagar con PSE / Tarjeta / Nequi'}
       </button>
 
-      {/* Texto de seguridad debajo del botón */}
-      <p style={{
-        textAlign: 'center',
-        fontSize: '11px',
-        color: '#9ca3af',
-        marginTop: '8px',
-      }}>
+      <p style={{ textAlign: 'center', fontSize: '11px', color: '#9ca3af', marginTop: '8px' }}>
         🔒 Pago 100% seguro procesado por Wompi (Bancolombia)
       </p>
     </form>

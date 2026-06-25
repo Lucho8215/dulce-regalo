@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { CreditCard } from 'lucide-react';
+import { CreditCard, Truck, Store, MapPin, Clock } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -14,11 +14,39 @@ import { useCart } from '@/hooks/useCart';
 import { useToast } from '@/hooks/use-toast';
 import { createOrder } from '@/lib/api';
 
+const OPCIONES_ENTREGA = [
+  {
+    id: 'bogota',
+    label: 'Domicilio en Bogotá',
+    precio: 15000,
+    icon: Truck,
+    detalle: 'Mismo día si pides antes del mediodía',
+    color: 'text-green-600',
+  },
+  {
+    id: 'colombia',
+    label: 'Envío a todo Colombia',
+    precio: 25000,
+    icon: Truck,
+    detalle: '1 día hábil después del despacho',
+    color: 'text-blue-600',
+  },
+  {
+    id: 'tienda',
+    label: 'Recoger en tienda',
+    precio: 0,
+    icon: Store,
+    detalle: 'Calle 63a sur #71h-46, Barrio Perdomo, Bogotá',
+    color: 'text-primary',
+  },
+];
+
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const { cartItems, clearCart } = useCart();
   const { toast } = useToast();
 
+  const [tipoEntrega, setTipoEntrega] = useState('bogota');
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -31,6 +59,8 @@ const CheckoutPage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [ordenGuardada, setOrdenGuardada] = useState(false);
 
+  const entregaSeleccionada = OPCIONES_ENTREGA.find(o => o.id === tipoEntrega);
+
   // Referencia única para esta orden: usamos timestamp para que nunca se repita
   // Ejemplo: "DR-1718900000000"  (DR = Dulce Regalo)
   const referenciaRef = useRef(`DR-${Date.now()}`);
@@ -41,7 +71,7 @@ const CheckoutPage = () => {
       return total + (price / 100) * item.quantity;
     }, 0);
 
-  const calculateShipping = () => (calculateSubtotal() >= 150000 ? 0 : 15000);
+  const calculateShipping = () => entregaSeleccionada?.precio ?? 0;
   const calculateTax = () => calculateSubtotal() * 0.19;
   const calculateTotal = () => calculateSubtotal() + calculateShipping() + calculateTax();
 
@@ -53,7 +83,9 @@ const CheckoutPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.nombre || !formData.email || !formData.telefono || !formData.direccion || !formData.ciudad || !formData.codigoPostal) {
+    const necesitaDireccion = tipoEntrega !== 'tienda';
+    if (!formData.nombre || !formData.email || !formData.telefono ||
+        (necesitaDireccion && (!formData.direccion || !formData.ciudad || !formData.codigoPostal))) {
       toast({ title: 'Campos incompletos', description: 'Por favor completa todos los campos requeridos', variant: 'destructive' });
       return;
     }
@@ -72,7 +104,8 @@ const CheckoutPage = () => {
       await createOrder(
         {
           ...formData,
-          referencia: referenciaRef.current,  // ← guardamos la referencia
+          referencia: referenciaRef.current,
+          tipo_entrega: tipoEntrega,
           subtotal: calculateSubtotal(),
           envio: calculateShipping(),
           iva: calculateTax(),
@@ -146,29 +179,87 @@ const CheckoutPage = () => {
                     </div>
                   </div>
 
+                  {/* ── Método de entrega ── */}
                   <div>
-                    <h2 className="text-2xl font-bold text-card-foreground mb-6">Dirección de Envío</h2>
-                    <div className="space-y-4">
-                      <div>
-                        <Label htmlFor="direccion">Dirección *</Label>
-                        <Input id="direccion" name="direccion" value={formData.direccion} onChange={handleChange} placeholder="Calle Principal 123, Barrio Centro" required className="mt-1 bg-background text-foreground" />
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="ciudad">Ciudad *</Label>
-                          <Input id="ciudad" name="ciudad" value={formData.ciudad} onChange={handleChange} placeholder="Bogotá" required className="mt-1 bg-background text-foreground" />
-                        </div>
-                        <div>
-                          <Label htmlFor="codigoPostal">Código Postal *</Label>
-                          <Input id="codigoPostal" name="codigoPostal" value={formData.codigoPostal} onChange={handleChange} placeholder="110111" required className="mt-1 bg-background text-foreground" />
-                        </div>
-                      </div>
-                      <div>
-                        <Label htmlFor="notas">Notas Adicionales (Opcional)</Label>
-                        <Textarea id="notas" name="notas" value={formData.notas} onChange={handleChange} placeholder="Instrucciones especiales de entrega, mensaje personalizado, etc." rows={4} className="mt-1 bg-background text-foreground resize-none" />
-                      </div>
+                    <h2 className="text-2xl font-bold text-card-foreground mb-6">Método de Entrega</h2>
+                    <div className="grid grid-cols-1 gap-3">
+                      {OPCIONES_ENTREGA.map((op) => {
+                        const Icon = op.icon;
+                        const activo = tipoEntrega === op.id;
+                        return (
+                          <button
+                            key={op.id}
+                            type="button"
+                            onClick={() => setTipoEntrega(op.id)}
+                            className={`flex items-start gap-4 p-4 rounded-xl border-2 text-left transition-all ${
+                              activo
+                                ? 'border-primary bg-primary/5'
+                                : 'border-border bg-background hover:border-primary/40'
+                            }`}
+                          >
+                            <div className={`mt-0.5 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${activo ? 'bg-primary/10' : 'bg-muted'}`}>
+                              <Icon className={`w-5 h-5 ${activo ? 'text-primary' : 'text-muted-foreground'}`} />
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center justify-between">
+                                <span className={`font-semibold ${activo ? 'text-primary' : 'text-foreground'}`}>{op.label}</span>
+                                <span className={`font-bold text-base ${activo ? 'text-primary' : 'text-foreground'}`}>
+                                  {op.precio === 0 ? 'Gratis' : `$${op.precio.toLocaleString('es-CO')}`}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-1 mt-1">
+                                <Clock className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                                <span className="text-sm text-muted-foreground">{op.detalle}</span>
+                              </div>
+                            </div>
+                            <div className={`mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${activo ? 'border-primary bg-primary' : 'border-border'}`}>
+                              {activo && <div className="w-2 h-2 rounded-full bg-white" />}
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
+
+                  {/* ── Dirección (solo si no es recoger en tienda) ── */}
+                  {tipoEntrega !== 'tienda' ? (
+                    <div>
+                      <h2 className="text-2xl font-bold text-card-foreground mb-6">Dirección de Envío</h2>
+                      <div className="space-y-4">
+                        <div>
+                          <Label htmlFor="direccion">Dirección *</Label>
+                          <Input id="direccion" name="direccion" value={formData.direccion} onChange={handleChange} placeholder="Calle Principal 123, Barrio Centro" required className="mt-1 bg-background text-foreground" />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <Label htmlFor="ciudad">Ciudad *</Label>
+                            <Input id="ciudad" name="ciudad" value={formData.ciudad} onChange={handleChange} placeholder="Bogotá" required className="mt-1 bg-background text-foreground" />
+                          </div>
+                          <div>
+                            <Label htmlFor="codigoPostal">Código Postal *</Label>
+                            <Input id="codigoPostal" name="codigoPostal" value={formData.codigoPostal} onChange={handleChange} placeholder="110111" required className="mt-1 bg-background text-foreground" />
+                          </div>
+                        </div>
+                        <div>
+                          <Label htmlFor="notas">Notas Adicionales (Opcional)</Label>
+                          <Textarea id="notas" name="notas" value={formData.notas} onChange={handleChange} placeholder="Instrucciones especiales de entrega, barrio, punto de referencia, etc." rows={3} className="mt-1 bg-background text-foreground resize-none" />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="bg-muted rounded-xl p-5 flex items-start gap-3">
+                      <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-foreground">Punto de recogida</p>
+                        <p className="text-sm text-muted-foreground mt-1">Calle 63a sur #71h-46, Barrio Perdomo, Bogotá</p>
+                        <p className="text-sm text-muted-foreground">Lunes a Viernes 9am–7pm · Sábados 10am–5pm</p>
+                        <div>
+                          <Label htmlFor="notas" className="mt-3 block">Notas (Opcional)</Label>
+                          <Textarea id="notas" name="notas" value={formData.notas} onChange={handleChange} placeholder="Hora aproximada de recogida, mensaje personalizado, etc." rows={2} className="mt-1 bg-background text-foreground resize-none" />
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
                   <div className="pt-6 border-t border-border space-y-4">
 

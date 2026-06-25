@@ -103,6 +103,8 @@ const ProductsPage = () => {
       .then(() => {
         toast.success('¡Producto seleccionado exitosamente! 🎁', {
           description: `${product.nombre} fue agregado a tu carrito`,
+          style: { background: '#f0fdf4', border: '1px solid #bbf7d0', color: '#14532d' },
+          descriptionStyle: { color: '#15803d' },
         });
       })
       .catch((error) => {

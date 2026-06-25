@@ -10,9 +10,12 @@ const TAGLINE_ANIM = `
   0%, 100% { transform: translateY(0px) rotate(-1deg); }
   50%       { transform: translateY(-3px) rotate(0.5deg); }
 }
-@keyframes letterPop {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  50%       { transform: scale(1.12) rotate(-2deg); }
+@keyframes caerLetra {
+  0%   { transform: translateY(-80px) scaleY(0.6); opacity: 0; }
+  60%  { transform: translateY(6px)   scaleY(1.1); opacity: 1; }
+  75%  { transform: translateY(-4px)  scaleY(0.95); }
+  88%  { transform: translateY(3px)   scaleY(1.04); }
+  100% { transform: translateY(0px)   scaleY(1);    opacity: 1; }
 }
 `;
 
@@ -87,6 +90,9 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
                   color: letter === ' ' ? 'transparent' : colors[i],
                   display: 'inline-block',
                   width: letter === ' ' ? '0.28em' : 'auto',
+                  animation: letter !== ' ' ? 'caerLetra 0.7s cubic-bezier(0.22,1,0.36,1) both' : 'none',
+                  animationDelay: `${i * 0.09}s`,
+                  opacity: 0,
                 }}
               >
                 {letter}

@@ -265,7 +265,7 @@ const AdminPage = () => {
   return (
     <>
       <Helmet>
-        <title>Panel de Administración - Dulce Regalo</title>
+        <title>PANEL DE ADMINISTRACIÓN - Dulce Regalo</title>
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -274,7 +274,7 @@ const AdminPage = () => {
         <section className="bg-gradient-to-r from-primary/10 to-accent/10 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">Panel de Administración</h1>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">PANEL DE ADMINISTRACIÓN</h1>
               <p className="text-muted-foreground">Gestiona productos, catálogos, órdenes e inventario</p>
             </motion.div>
             <Button variant="outline" onClick={handleSignOut} className="hidden sm:flex items-center gap-2">

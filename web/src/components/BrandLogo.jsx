@@ -56,9 +56,9 @@ const LogoIcon = ({ size = 48 }) => (
 
 const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
   const sizes = {
-    sm: { icon: 38,  title: '2rem',   tagline: '0.82rem', gap: '10px' },
-    md: { icon: 54,  title: '3rem',   tagline: '0.96rem', gap: '13px' },
-    lg: { icon: 68,  title: '3.6rem', tagline: '1.1rem',  gap: '15px' },
+    sm: { icon: 38,  title: '2.1rem',  tagline: '0.82rem', gap: '10px' },
+    md: { icon: 54,  title: '3.2rem',  tagline: '0.96rem', gap: '13px' },
+    lg: { icon: 68,  title: '3.8rem',  tagline: '1.1rem',  gap: '15px' },
   };
 
   const s = sizes[size] || sizes.md;
@@ -75,7 +75,7 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
           <div style={{
             fontFamily: '"Modak", "Fredoka One", cursive',
             fontSize: s.title,
-            fontWeight: 900,
+            fontWeight: 500,
             letterSpacing: '0.04em',
             lineHeight: 1.1,
             display: 'flex',

@@ -107,6 +107,7 @@ const ProductsPage = () => {
         toast({
           title: '¡Producto seleccionado exitosamente! 🎁',
           description: `${product.nombre} fue agregado a tu carrito`,
+          variant: 'success',
         });
       })
       .catch((error) => {

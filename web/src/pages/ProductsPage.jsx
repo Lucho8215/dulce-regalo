@@ -21,14 +21,11 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { supabase } from '@/lib/supabase';
 // Importamos hooks personalizados
 import { useCart } from '@/hooks/useCart';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 
 // Página de listado de productos con filtros y búsqueda
 const ProductsPage = () => {
-  // Hook del carrito para agregar productos
   const { addToCart } = useCart();
-  // Hook toast para notificaciones
-  const { toast } = useToast();
 
   // Estados de productos y filtros
   const [products, setProducts] = useState([]);
@@ -104,17 +101,13 @@ const ProductsPage = () => {
 
     addToCart(mockProduct, mockVariant, 1, product.inventario)
       .then(() => {
-        toast({
-          title: '¡Producto seleccionado exitosamente! 🎁',
+        toast.success('¡Producto seleccionado exitosamente! 🎁', {
           description: `${product.nombre} fue agregado a tu carrito`,
-          variant: 'success',
         });
       })
       .catch((error) => {
-        toast({
-          title: 'Error',
+        toast.error('No se pudo agregar al carrito', {
           description: error.message,
-          variant: 'destructive',
         });
       });
   };

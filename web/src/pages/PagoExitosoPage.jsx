@@ -87,7 +87,7 @@ const PagoExitosoPage = () => {
   return (
     <>
       <Helmet>
-        <title>Estado del pago - Dulce Regalo</title>
+        <title>Estado del pago - Momentos Magicos</title>
       </Helmet>
 
       <div className="min-h-screen bg-background">

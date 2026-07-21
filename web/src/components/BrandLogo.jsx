@@ -21,7 +21,7 @@ const TAGLINE_ANIM = `
   50%       { transform: translateY(-3px) rotate(0.5deg); }
 }
 
-/* Letras de "Dulce Regalo" caen del cielo con rebote al aterrizar */
+/* Letras de "Momentos Magicos" caen del cielo con rebote al aterrizar */
 @keyframes caerLetra {
   0%   { transform: translateY(-80px) scaleY(0.6); opacity: 0; }   /* inicio arriba invisible */
   60%  { transform: translateY(6px)   scaleY(1.1); opacity: 1; }   /* rebote hacia abajo */
@@ -99,10 +99,10 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
 
   const s = sizes[size] || sizes.md;
 
-  // Colores de cada letra de "Dulce Regalo" (índice = posición de la letra)
+  // Colores de cada letra de "Momentos Magicos" (índice = posición de la letra)
   // Para cambiar un color → editar el color en la posición correspondiente
-  // D=0  u=1  l=2  c=3  e=4  (espacio=5)  R=6  e=7  g=8  a=9  l=10  o=11
-  const colors = ['#E91E8C','#FF5722','#FFC107','#4CAF50','#E91E8C','#E91E8C','#2196F3','#FF5722','#9C27B0','#E91E8C','#FF5722','#4CAF50'];
+  // M=0  o=1  m=2  e=3  n=4  t=5  o=6  s=7  (espacio=8)  M=9  a=10  g=11  i=12  c=13  o=14  s=15
+  const colors = ['#E91E8C','#FF5722','#FFC107','#4CAF50','#E91E8C','#2196F3','#FF5722','#4CAF50','#E91E8C','#2196F3','#FF5722','#9C27B0','#E91E8C','#4CAF50','#FF5722','#9C27B0'];
 
   const content = (
     <>
@@ -115,7 +115,7 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
 
         <div style={{ lineHeight: 1 }}>
 
-          {/* ── Título "Dulce Regalo" ──
+          {/* ── Título "Momentos Magicos" ──
               fontWeight: 500 = delgado. Cambiar a 700/900 para más grueso.
               Cada letra cae del cielo con la animación "caerLetra"
               animationDelay escalonado → cada letra cae 0.09s después de la anterior */}
@@ -130,7 +130,7 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
             gap: 0,
             filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.15))', // sombra sutil
           }}>
-            {['D','u','l','c','e',' ','R','e','g','a','l','o'].map((letter, i) => (
+            {['M','o','m','e','n','t','o','s',' ','M','a','g','i','c','o','s'].map((letter, i) => (
               <span
                 key={i}
                 style={{

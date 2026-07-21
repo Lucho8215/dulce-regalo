@@ -51,8 +51,8 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>Dulce Regalo - Detalles con amor para momentos especiales</title>
-        <meta name="description" content="Encuentra el regalo perfecto en Dulce Regalo. Osos de peluche, regalos personalizados y detalles únicos para expresar tu amor." />
+        <title>Momentos Magicos - Detalles con amor para momentos especiales</title>
+        <meta name="description" content="Encuentra el regalo perfecto en Momentos Magicos. Osos de peluche, regalos personalizados y detalles únicos para expresar tu amor." />
       </Helmet>
 
       <div className="min-h-screen bg-background">

@@ -117,7 +117,7 @@ const ProductsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Productos - Dulce Regalo</title>
+        <title>Productos - Momentos Magicos</title>
         <meta name="description" content="Explora nuestra colección completa de regalos especiales. Osos de peluche, detalles personalizados y más." />
       </Helmet>
 

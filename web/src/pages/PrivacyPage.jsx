@@ -10,7 +10,7 @@ const PrivacyPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Política de Privacidad - Dulce Regalo</title>
+        <title>Política de Privacidad - Momentos Magicos</title>
         <meta name="description" content="Lee nuestra política de privacidad y protección de datos" />
       </Helmet>
 
@@ -48,7 +48,7 @@ const PrivacyPage = () => {
               {/* Introducción */}
               <div>
                 <p className="text-muted-foreground leading-relaxed">
-                  En Dulce Regalo, valoramos y respetamos tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestro sitio web y servicios.
+                   En Momentos Magicos, valoramos y respetamos tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestro sitio web y servicios.
                 </p>
               </div>
 

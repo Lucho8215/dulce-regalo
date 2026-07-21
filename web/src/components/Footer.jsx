@@ -124,7 +124,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-center text-sm opacity-90">
             <p>
-              © {currentYear} Dulce Regalo. Todos los derechos reservados.
+              © {currentYear} Momentos Magicos. Todos los derechos reservados.
             </p>
           </div>
         </div>

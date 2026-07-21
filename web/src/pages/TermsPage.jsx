@@ -10,7 +10,7 @@ const TermsPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Términos y Condiciones - Dulce Regalo</title>
+        <title>Términos y Condiciones - Momentos Magicos</title>
         <meta name="description" content="Lee nuestros términos y condiciones de uso" />
       </Helmet>
 
@@ -51,7 +51,7 @@ const TermsPage = () => {
                   1. Aceptación de los Términos
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Al acceder y utilizar el sitio web de Dulce Regalo, aceptas estar sujeto a estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar nuestro sitio web.
+                   Al acceder y utilizar el sitio web de Momentos Magicos, aceptas estar sujeto a estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar nuestro sitio web.
                 </p>
               </div>
 
@@ -117,7 +117,7 @@ const TermsPage = () => {
                   7. Propiedad Intelectual
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Todo el contenido del sitio web, incluyendo textos, imágenes, logos y diseños, es propiedad de Dulce Regalo y está protegido por leyes de propiedad intelectual. No está permitido copiar, reproducir o distribuir ningún contenido sin autorización previa.
+                   Todo el contenido del sitio web, incluyendo textos, imágenes, logos y diseños, es propiedad de Momentos Magicos y está protegido por leyes de propiedad intelectual. No está permitido copiar, reproducir o distribuir ningún contenido sin autorización previa.
                 </p>
               </div>
 
@@ -127,7 +127,7 @@ const TermsPage = () => {
                   8. Limitación de Responsabilidad
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Dulce Regalo no será responsable por daños indirectos, incidentales o consecuentes que resulten del uso o la imposibilidad de usar nuestros productos o servicios. Nuestra responsabilidad máxima se limitará al valor del producto adquirido.
+                   Momentos Magicos no será responsable por daños indirectos, incidentales o consecuentes que resulten del uso o la imposibilidad de usar nuestros productos o servicios. Nuestra responsabilidad máxima se limitará al valor del producto adquirido.
                 </p>
               </div>
 

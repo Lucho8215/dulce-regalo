@@ -61,7 +61,7 @@ const CheckoutPage = () => {
   const entregaSeleccionada = OPCIONES_ENTREGA.find(o => o.id === tipoEntrega);
 
   // Referencia única para esta orden: usamos timestamp para que nunca se repita
-  // Ejemplo: "DR-1718900000000"  (DR = Dulce Regalo)
+   // Ejemplo: "MM-1718900000000"  (MM = Momentos Magicos)
   const referenciaRef = useRef(`DR-${Date.now()}`);
 
   const calculateSubtotal = () =>
@@ -131,7 +131,7 @@ const CheckoutPage = () => {
   return (
     <>
       <Helmet>
-        <title>Checkout - Dulce Regalo</title>
+        <title>Checkout - Momentos Magicos</title>
         <meta name="description" content="Completa tu compra de forma segura" />
       </Helmet>
 

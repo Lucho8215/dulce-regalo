@@ -265,7 +265,7 @@ const AdminPage = () => {
   return (
     <>
       <Helmet>
-        <title>PANEL DE ADMINISTRACIÓN - Dulce Regalo</title>
+        <title>PANEL DE ADMINISTRACIÓN - Momentos Magicos</title>
       </Helmet>
 
       <div className="min-h-screen bg-background">

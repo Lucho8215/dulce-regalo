@@ -105,7 +105,7 @@ const ContactPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Contacto - Dulce Regalo</title>
+        <title>Contacto - Momentos Magicos</title>
         <meta name="description" content="Contáctanos para cualquier consulta sobre nuestros productos y servicios" />
       </Helmet>
 

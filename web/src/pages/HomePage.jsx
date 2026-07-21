@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Heart, Gift, Sparkles, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,6 +14,7 @@ import { getProductsDestacados } from '@/lib/api';
 const HomePage = () => {
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -44,7 +45,10 @@ const HomePage = () => {
     };
 
     addToCart(prod, variant, 1, product.inventario)
-      .then(() => toast({ title: 'Producto agregado', description: `${product.nombre} se agregó al carrito` }))
+      .then(() => {
+        toast({ title: 'Producto agregado', description: `${product.nombre} se agregó al carrito` });
+        navigate('/productos');
+      })
       .catch((error) => toast({ title: 'Error', description: error.message, variant: 'destructive' }));
   };
 

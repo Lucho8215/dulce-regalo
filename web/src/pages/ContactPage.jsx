@@ -204,9 +204,7 @@ const ContactPage = () => {
                 <div className="bg-muted rounded-xl p-6">
                   <h3 className="font-semibold text-foreground mb-3">Horario de Atención</h3>
                   <div className="space-y-2 text-sm text-muted-foreground">
-                    <p>Lunes a Viernes: 9:00 AM - 7:00 PM</p>
-                    <p>Sábados: 10:00 AM - 5:00 PM</p>
-                    <p>Domingos: Cerrado</p>
+                    <p>Todos los días: 10:00 AM - 8:00 PM</p>
                   </div>
                 </div>
               </motion.div>

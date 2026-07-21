@@ -127,7 +127,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="precio">Precio (COP) *</Label>
-          <Input id="precio" name="precio" type="number" min="0" value={formData.precio} onChange={handleChange} placeholder="29990" required className="bg-background text-foreground" />
+          <Input id="precio" name="precio" type="number"                          min="1" value={formData.precio} onChange={handleChange} placeholder="29990" required className="bg-background text-foreground" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="categoria">Categoría *</Label>
@@ -185,7 +185,7 @@ const AdminProductForm = ({ product, onSubmit, onCancel }) => {
 
       <div className="space-y-2">
         <Label htmlFor="inventario">Inventario Disponible</Label>
-        <Input id="inventario" name="inventario" type="number" min="0" value={formData.inventario} onChange={handleChange} placeholder="25" className="bg-background text-foreground" />
+        <Input id="inventario" name="inventario" type="number"                          min="1" value={formData.inventario} onChange={handleChange} placeholder="25" className="bg-background text-foreground" />
       </div>
 
       <div className="flex items-center space-x-2">

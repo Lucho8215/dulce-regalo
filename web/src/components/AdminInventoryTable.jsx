@@ -47,7 +47,7 @@ const AdminInventoryTable = ({ products, onUpdateInventory }) => {
   const getStockStatus = (inventory) => {
     if (inventory === 0) {
       return { label: 'Agotado', variant: 'destructive', icon: AlertTriangle };
-    } else if (inventory < 10) {
+    } else if (inventory < 1) {
       return { label: 'Bajo', variant: 'secondary', icon: AlertTriangle };
     } else {
       return { label: 'Disponible', variant: 'default', icon: CheckCircle };

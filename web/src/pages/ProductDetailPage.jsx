@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Heart, ArrowLeft, Package, Truck, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,7 @@ const ProductDetailPage = () => {
   const { id } = useParams();
   const { addToCart } = useCart();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -50,12 +51,13 @@ const ProductDetailPage = () => {
     const prod = { id: product.id, title: product.nombre, image: product.imagen_url };
 
     addToCart(prod, variant, quantity, product.inventario)
-      .then(() =>
+      .then(() => {
         toast({
           title: 'Producto agregado',
           description: `${quantity} ${quantity === 1 ? 'unidad' : 'unidades'} de ${product.nombre} agregadas al carrito`,
-        })
-      )
+        });
+        navigate('/productos');
+      })
       .catch((error) => toast({ title: 'Error', description: error.message, variant: 'destructive' }));
   };
 

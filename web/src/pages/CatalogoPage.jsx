@@ -6,6 +6,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { supabase } from '@/lib/supabase';
 
+const formatCOP = (price) =>
+  new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(Math.round(price));
+
 const CatalogoPage = () => {
   const [media, setMedia]          = useState({ images: [], videos: [] });
   const [catalogos, setCatalogos]  = useState([]);
@@ -13,6 +16,19 @@ const CatalogoPage = () => {
   const [lightbox, setLightbox]    = useState(null);
   const [playingVideo, setPlaying] = useState(null);
   const [loading, setLoading]      = useState(true);
+
+  const urlPriceMap = (() => {
+    if (!filtroActivo) return {};
+    const catalogo = catalogos.find(c => c.id === filtroActivo);
+    if (!catalogo) return {};
+    const map = {};
+    catalogo.catalog_products?.forEach(cp => {
+      if (cp.products?.imagen_url && cp.products?.precio) {
+        map[cp.products.imagen_url] = cp.products.precio;
+      }
+    });
+    return map;
+  });
 
   // Cargar imágenes/videos del JSON
   useEffect(() => {
@@ -34,7 +50,7 @@ const CatalogoPage = () => {
   useEffect(() => {
     supabase
       .from('catalogs')
-      .select(`*, catalog_products(product_id, products(id, nombre, imagen_url))`)
+      .select(`*, catalog_products(product_id, products(id, nombre, imagen_url, precio))`)
       .eq('activo', true)
       .then(({ data }) => { if (data) setCatalogos(data); });
   }, []);
@@ -221,6 +237,11 @@ const CatalogoPage = () => {
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center">
                           <ImageIcon className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
+                        {urlPriceMap[img.url] && (
+                          <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded-lg">
+                            {formatCOP(urlPriceMap[img.url])}
+                          </div>
+                        )}
                       </motion.div>
                     ))}
                   </div>

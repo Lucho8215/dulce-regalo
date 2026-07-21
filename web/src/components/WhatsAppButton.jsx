@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '573213175459';
-const WHATSAPP_MESSAGE = 'Hola! Me interesa un regalo de Dulce Regalo 🎁';
+const WHATSAPP_MESSAGE = 'Hola! Me interesa un regalo de Momentos Magicos 🎁';
 
 const WhatsAppButton = () => {
   const [showTooltip, setShowTooltip] = useState(true);

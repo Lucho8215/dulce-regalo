@@ -71,7 +71,7 @@ const CatalogoPage = () => {
   return (
     <>
       <Helmet>
-        <title>Catálogo — Dulce Regalo</title>
+        <title>Catálogo — Momentos Magicos</title>
         <meta name="description" content="Conoce nuestra colección de regalos únicos con fotos y videos" />
       </Helmet>
 

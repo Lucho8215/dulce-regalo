@@ -2,7 +2,7 @@
  * upload-media.mjs
  * 1. Borra todo lo que hay en Supabase Storage (products/ y catalog/)
  * 2. Renombra archivos locales a nombres limpios (producto-001.jpeg, video-001.mp4)
- * 3. Agrega marca de agua "Dulce Regalo LPC" a cada imagen
+ * 3. Agrega marca de agua "Momentos Magicos LPC" a cada imagen
  * 4. Sube todo a Supabase Storage
  * 5. Genera public/media-urls.json con las URLs públicas
  *
@@ -47,7 +47,7 @@ async function addWatermark(imagePath) {
   const w        = meta.width  || 800;
   const fontSize = Math.max(20, Math.round(w * 0.045));
   const pad      = Math.round(w * 0.03);
-  const texto    = 'Dulce Regalo LPC';
+  const texto    = 'Momentos Magicos LPC';
   const txW      = Math.round(texto.length * fontSize * 0.58);
   const txH      = Math.round(fontSize * 1.5);
 

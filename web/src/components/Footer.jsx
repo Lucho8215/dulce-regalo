@@ -27,7 +27,7 @@ const Footer = () => {
             {/* Redes sociales */}
             <div className="flex gap-3">
               <a
-                href="https://www.facebook.com/share/1D26sPqj2t/"
+                href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-secondary-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
@@ -35,8 +35,8 @@ const Footer = () => {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://www.facebook.com/share/1D26sPqj2t/" target="_blank"
-               
+                href="https://instagram.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-secondary-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
               >
@@ -101,18 +101,19 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span className="opacity-90">
-                  Calle 63a sur #71h-46, Barrio Perdomo,                </span>
+                  Av. Principal 123, Perdomo
+                </span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 flex-shrink-0" />
-                <a href="tel:+573213175459" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
-                  321 3175459
+                <a href="tel:+313547859" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
+                  +313547859
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <a href="mailto:Lepacaru@gmail.com" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
-                  Lepacaru@gmail.com
+                <a href="mailto:contacto@momentomagicos.com" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
+                  contacto@momentomagicos.com
                 </a>
               </li>
             </ul>
@@ -124,7 +125,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-center text-sm opacity-90">
             <p>
-              © {currentYear} Momentos Magicos. Todos los derechos reservados.
+              © {currentYear} Momento M�gicos. Todos los derechos reservados.
             </p>
           </div>
         </div>

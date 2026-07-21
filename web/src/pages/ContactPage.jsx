@@ -105,7 +105,7 @@ const ContactPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Contacto - Momentos Magicos</title>
+        <title>Contacto - Momento M�gicos</title>
         <meta name="description" content="Contáctanos para cualquier consulta sobre nuestros productos y servicios" />
       </Helmet>
 
@@ -161,8 +161,8 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-card-foreground mb-1">Email</h3>
-                        <a href="mailto:Lepacaru@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                          Lepacaru@gmail.com
+                        <a href="mailto:contacto@momentomagicos.com" className="text-muted-foreground hover:text-primary transition-colors">
+                          contacto@momentomagicos.com
                         </a>
                       </div>
                     </div>
@@ -176,8 +176,8 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-card-foreground mb-1">Teléfono</h3>
-                        <a href="tel:+573213175459" className="text-muted-foreground hover:text-primary transition-colors">
-                          321 3175459
+                        <a href="tel:+525512345678" className="text-muted-foreground hover:text-primary transition-colors">
+                          +313547859
                         </a>
                       </div>
                     </div>
@@ -192,8 +192,8 @@ const ContactPage = () => {
                       <div>
                         <h3 className="font-semibold text-card-foreground mb-1">Dirección</h3>
                         <p className="text-muted-foreground">
-                          Calle 63a sur #71h-46<br />
-                          Barrio Perdomo, Bogotá
+                          Av. Principal 123<br />
+                          perdomo, 01000
                         </p>
                       </div>
                     </div>

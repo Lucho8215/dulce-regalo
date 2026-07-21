@@ -20,7 +20,7 @@ const SuccessPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Compra Exitosa - Momentos Magicos</title>
+        <title>Compra Exitosa - Momento Mágicos</title>
         <meta name="description" content="Tu pedido ha sido procesado exitosamente" />
       </Helmet>
 

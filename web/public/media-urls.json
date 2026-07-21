@@ -1,0 +1,272 @@
+{
+  "generatedAt": "2026-06-24T20:59:41.436Z",
+  "images": [
+    {
+      "file": "producto-001.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-001.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-002.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-002.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-003.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-003.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-004.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-004.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-005.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-005.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-006.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-006.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-007.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-007.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-008.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-008.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-009.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-009.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-010.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-010.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-011.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-011.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-012.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-012.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-013.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-013.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-014.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-014.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-015.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-015.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-016.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-016.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-017.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-017.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-018.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-018.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-019.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-019.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-020.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-020.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-021.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-021.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-022.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-022.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-023.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-023.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-024.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-024.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-025.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-025.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-026.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-026.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-027.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-027.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-028.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-028.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-029.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-029.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-030.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-030.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-031.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-031.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-032.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-032.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-033.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-033.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-034.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-034.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-035.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-035.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-036.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-036.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-037.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-037.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-038.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-038.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-039.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-039.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-040.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-040.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-041.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-041.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-042.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-042.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-043.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-043.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-044.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-044.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-045.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-045.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-046.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-046.jpeg",
+      "type": "image"
+    },
+    {
+      "file": "producto-047.jpeg",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-images/products/producto-047.jpeg",
+      "type": "image"
+    }
+  ],
+  "videos": [
+    {
+      "file": "video-001.mp4",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-videos/catalog/video-001.mp4",
+      "type": "video"
+    },
+    {
+      "file": "video-002.mp4",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-videos/catalog/video-002.mp4",
+      "type": "video"
+    },
+    {
+      "file": "video-003.mp4",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-videos/catalog/video-003.mp4",
+      "type": "video"
+    },
+    {
+      "file": "video-004.mp4",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-videos/catalog/video-004.mp4",
+      "type": "video"
+    },
+    {
+      "file": "video-005.mp4",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-videos/catalog/video-005.mp4",
+      "type": "video"
+    },
+    {
+      "file": "video-006.mp4",
+      "url": "https://lzrhelqswsvomyvbehdz.supabase.co/storage/v1/object/public/product-videos/catalog/video-006.mp4",
+      "type": "video"
+    }
+  ]
+}

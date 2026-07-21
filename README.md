@@ -1,4 +1,4 @@
-# Dulce Regalo - Gift Store
+# Momento Mágicos - Gift Store
 
 An online gift shop built with React, Vite, and Tailwind CSS.
 
@@ -97,8 +97,8 @@ web/
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/dulce-regalo.git
-cd dulce-regalo/web
+git clone https://github.com/tu-usuario/momento-magicos.git
+cd momento-magicos/web
 
 # 2. Instalar dependencias
 npm install

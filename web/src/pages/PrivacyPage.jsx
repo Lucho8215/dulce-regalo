@@ -10,7 +10,7 @@ const PrivacyPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Política de Privacidad - Dulce Regalo</title>
+        <title>Política de Privacidad - Momento M�gicos</title>
         <meta name="description" content="Lee nuestra política de privacidad y protección de datos" />
       </Helmet>
 
@@ -48,7 +48,7 @@ const PrivacyPage = () => {
               {/* Introducción */}
               <div>
                 <p className="text-muted-foreground leading-relaxed">
-                  En Dulce Regalo, valoramos y respetamos tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestro sitio web y servicios.
+                  En Momento M�gicos, valoramos y respetamos tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestro sitio web y servicios.
                 </p>
               </div>
 
@@ -168,7 +168,7 @@ const PrivacyPage = () => {
                   10. Contacto
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Si tienes preguntas sobre esta política de privacidad o deseas ejercer tus derechos, contáctanos en contacto@dulceregalo.com o llama al +52 55 1234 5678.
+                  Si tienes preguntas sobre esta política de privacidad o deseas ejercer tus derechos, contáctanos en contacto@momentomagicos.com o llama al +52 55 1234 5678.
                 </p>
               </div>
             </motion.div>

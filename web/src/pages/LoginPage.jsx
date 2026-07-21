@@ -43,7 +43,7 @@ const LoginPage = () => {
   return (
     <>
       <Helmet>
-        <title>Acceso Admin - Dulce Regalo</title>
+        <title>Acceso Admin - Momento M·gicos</title>
       </Helmet>
 
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
@@ -57,7 +57,7 @@ const LoginPage = () => {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 text-primary mb-2">
               <Heart className="w-8 h-8" fill="currentColor" />
-              <span className="text-2xl font-bold">Dulce Regalo</span>
+              <span className="text-2xl font-bold">Momento M·gicos</span>
             </div>
             <p className="text-muted-foreground text-sm">Panel de administraci√≥n</p>
           </div>
@@ -79,7 +79,7 @@ const LoginPage = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@dulceregalo.com"
+                  placeholder="admin@momentomagicos.com"
                   required
                   className="bg-background"
                 />

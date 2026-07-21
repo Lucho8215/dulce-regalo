@@ -51,7 +51,7 @@ const CartPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Carrito de Compras - Dulce Regalo</title>
+        <title>Carrito de Compras - Momento Mágicos</title>
         <meta name="description" content="Revisa tu carrito de compras y procede al checkout" />
       </Helmet>
 

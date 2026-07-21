@@ -105,7 +105,7 @@ const ContactPage = () => {
     <>
       {/* Meta tags para SEO */}
       <Helmet>
-        <title>Contacto - Dulce Regalo</title>
+        <title>Contacto - Momento Mágicos</title>
         <meta name="description" content="ContÃ¡ctanos para cualquier consulta sobre nuestros productos y servicios" />
       </Helmet>
 
@@ -161,8 +161,8 @@ const ContactPage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-card-foreground mb-1">Email</h3>
-                        <a href="mailto:contacto@dulceregalo.com" className="text-muted-foreground hover:text-primary transition-colors">
-                          contacto@dulceregalo.com
+                        <a href="mailto:contacto@momentomagicos.com" className="text-muted-foreground hover:text-primary transition-colors">
+                          contacto@momentomagicos.com
                         </a>
                       </div>
                     </div>

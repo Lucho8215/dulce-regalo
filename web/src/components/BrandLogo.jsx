@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Logo SVG profesional de Dulce Regalo
+// Logo SVG profesional de Momento Mágicos
 const LogoIcon = ({ size = 48 }) => (
   <svg
     width={size}
@@ -99,8 +99,8 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
           flexWrap: 'wrap',
           gap: 0,
         }}>
-          {['D','u','l','c','e',' ','R','e','g','a','l','o'].map((letter, i) => {
-            const colors = ['#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335'];
+          {['M','o','m','e','n','t','o',' ','M','á','g','i','c','o','s'].map((letter, i) => {
+            const colors = ['#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4','#4285F4','#EA4335','#FBBC05','#34A853','#FF69B4'];
             return (
               <span key={i} style={{ color: letter === ' ' ? 'transparent' : colors[i], display: 'inline-block', width: letter === ' ' ? '0.3em' : 'auto' }}>
                 {letter === ' ' ? 'Â ' : letter}

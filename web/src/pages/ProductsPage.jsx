@@ -165,7 +165,7 @@ const ProductsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Productos - Dulce Regalo</title>
+        <title>Productos - Momento Mágicos</title>
         <meta name="description" content="Explora nuestra colecciÃ³n completa de regalos especiales." />
       </Helmet>
 

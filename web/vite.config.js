@@ -1,4 +1,4 @@
-// Configuración de Vite para el proyecto Dulce Regalo
+// Configuración de Vite para el proyecto Momento M�gicos
 // Define alias de importación y opciones de servidor de desarrollo
 
 import { defineConfig } from 'vite'

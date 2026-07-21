@@ -112,8 +112,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <a href="mailto:contacto@dulceregalo.com" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
-                  contacto@dulceregalo.com
+                <a href="mailto:contacto@momentomagicos.com" className="opacity-90 hover:opacity-100 hover:text-primary transition-all">
+                  contacto@momentomagicos.com
                 </a>
               </li>
             </ul>
@@ -125,7 +125,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-center text-sm opacity-90">
             <p>
-              © {currentYear} Dulce Regalo. Todos los derechos reservados.
+              © {currentYear} Momento M�gicos. Todos los derechos reservados.
             </p>
           </div>
         </div>

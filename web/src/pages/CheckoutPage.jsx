@@ -32,7 +32,7 @@ const CheckoutPage = () => {
   const [ordenGuardada, setOrdenGuardada] = useState(false);
 
   // Referencia Ãºnica para esta orden: usamos timestamp para que nunca se repita
-  // Ejemplo: "DR-1718900000000"  (DR = Dulce Regalo)
+  // Ejemplo: "DR-1718900000000"  (DR = Momento Mágicos)
   const referenciaRef = useRef(`DR-${Date.now()}`);
 
   const calculateSubtotal = () =>
@@ -99,7 +99,7 @@ const CheckoutPage = () => {
   return (
     <>
       <Helmet>
-        <title>Checkout - Dulce Regalo</title>
+        <title>Checkout - Momento Mágicos</title>
         <meta name="description" content="Completa tu compra de forma segura" />
       </Helmet>
 

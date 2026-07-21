@@ -21,11 +21,13 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { supabase } from '@/lib/supabase';
 // Importamos hooks personalizados
 import { useCart } from '@/hooks/useCart';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 // Página de listado de productos con filtros y búsqueda
 const ProductsPage = () => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   // Estados de productos y filtros
   const [products, setProducts] = useState([]);
@@ -88,7 +90,7 @@ const ProductsPage = () => {
       sale_price_in_cents: null,
       currency_info: { code: 'USD', symbol: '$' },
       sale_price_formatted: null,
-      price_formatted: `$${product.precio.toFixed(2)}`,
+      price_formatted: `$${Math.round(product.precio).toLocaleString('es-CO')}`,
       manage_inventory: true,
       inventory_quantity: product.inventario
     };
@@ -101,11 +103,12 @@ const ProductsPage = () => {
 
     addToCart(mockProduct, mockVariant, 1, product.inventario)
       .then(() => {
-        toast.success('¡Producto seleccionado exitosamente! 🎁', {
-          description: `${product.nombre} fue agregado a tu carrito`,
+        toast.success('Producto agregado 🎁', {
+          description: `${product.nombre} se agregó al carrito`,
           style: { background: '#f0fdf4', border: '1px solid #bbf7d0', color: '#14532d' },
           descriptionStyle: { color: '#15803d' },
         });
+        navigate('/productos');
       })
       .catch((error) => {
         toast.error('No se pudo agregar al carrito', {

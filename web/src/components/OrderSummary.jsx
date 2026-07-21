@@ -8,6 +8,7 @@ const formatCOP = (price) =>
     style: 'currency',
     currency: 'COP',
     minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(price);
 
 const OrderSummary = ({ cartItems, subtotal, shipping, tax, total }) => {

@@ -222,21 +222,21 @@ const CartPage = () => {
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Subtotal</span>
                         <span className="font-medium text-card-foreground">
-                          ${(calculateSubtotal() / 100).toFixed(2)}
+                          ${Math.round(calculateSubtotal() / 100).toLocaleString('es-CO')}
                         </span>
                       </div>
 
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Envío</span>
                         <span className="font-medium text-card-foreground">
-                          {calculateShipping() === 0 ? 'Gratis' : `$${calculateShipping().toFixed(2)}`}
+                          {calculateShipping() === 0 ? 'Gratis' : `$${Math.round(calculateShipping()).toLocaleString('es-CO')}`}
                         </span>
                       </div>
 
                       <div className="flex justify-between text-sm">
                         <span className="text-muted-foreground">Impuestos (16%)</span>
                         <span className="font-medium text-card-foreground">
-                          ${calculateTax().toFixed(2)}
+                          ${Math.round(calculateTax()).toLocaleString('es-CO')}
                         </span>
                       </div>
                     </div>
@@ -247,7 +247,7 @@ const CartPage = () => {
                     <div className="flex justify-between items-center mb-6">
                       <span className="text-lg font-semibold text-card-foreground">Total</span>
                       <span className="text-2xl font-bold text-primary">
-                        ${calculateTotal().toFixed(2)}
+                        ${Math.round(calculateTotal()).toLocaleString('es-CO')}
                       </span>
                     </div>
 
@@ -265,7 +265,7 @@ const CartPage = () => {
                     {/* Mensaje de envío gratis */}
                     {calculateSubtotal() / 100 < 50 && (
                       <p className="text-xs text-muted-foreground text-center mt-4">
-                        Agrega ${(50 - calculateSubtotal() / 100).toFixed(2)} más para envío gratis
+                         Agrega ${Math.round(50 - calculateSubtotal() / 100).toLocaleString('es-CO')} más para envío gratis
                       </p>
                     )}
                   </div>

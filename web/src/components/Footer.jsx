@@ -27,7 +27,7 @@ const Footer = () => {
             {/* Redes sociales */}
             <div className="flex gap-3">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/share/1D26sPqj2t/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-secondary-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"
@@ -35,7 +35,7 @@ const Footer = () => {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://www.tiktok.com/@leidypaolacarmonaruiz?_r=1&_t=ZS-97U3pFDCVaG" target="_blank"
+                href="https://www.facebook.com/share/1D26sPqj2t/" target="_blank"
                
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-secondary-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-all duration-200"

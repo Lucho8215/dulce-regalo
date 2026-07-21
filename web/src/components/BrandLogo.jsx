@@ -92,7 +92,7 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
   // Tamaños por variante: ícono SVG, fuente título, fuente tagline, espacio entre ícono y texto
   // Para hacer el logo más grande/pequeño → cambiar los valores aquí
   const sizes = {
-    sm: { icon: 38,  title: '2.1rem',  tagline: '0.82rem', gap: '10px' },
+    sm: { icon: 38,  title: '2.3rem',  tagline: '0.82rem', gap: '9px' },
     md: { icon: 54,  title: '3.2rem',  tagline: '0.96rem', gap: '13px' },  // ← usado en el Header
     lg: { icon: 68,  title: '3.8rem',  tagline: '1.1rem',  gap: '15px' },  // ← usado en el Footer
   };
@@ -123,11 +123,12 @@ const BrandLogo = ({ size = 'md', showTagline = true, linkTo = '/' }) => {
             fontFamily: '"Modak", "Fredoka One", cursive', // fuente display redondeada
             fontSize: s.title,
             fontWeight: 500,           // ← para más grueso cambiar a 700 o 900
-            letterSpacing: '0.04em',   // ← espaciado entre letras
+            letterSpacing: '0.15em',   // ← espaciado entre letras
             lineHeight: 1.1,
             display: 'flex',
             flexWrap: 'wrap',
             gap: 0,
+            whiteSpace: 'nowrap',
             filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.15))', // sombra sutil
           }}>
             {['M','o','m','e','n','t','o','s',' ','M','a','g','i','c','o','s'].map((letter, i) => (

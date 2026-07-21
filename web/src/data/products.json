@@ -32,7 +32,7 @@
       "categoria": "Osos",
       "imagen": "/img/3.jpeg",
       "imagen_url": "/img/3.jpeg",
-      "inventario": 10,
+      "inventario": 1,
       "destacado": true,
       "variants": [{ "id": "var_003", "title": "Estándar" }]
     },

@@ -99,25 +99,27 @@ const PagoExitosoPage = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className={`${info.bgColor} border ${info.borderColor} rounded-2xl p-10 text-center shadow-sm`}
+              className={`${info.bgColor} border-2 ${info.borderColor} rounded-3xl p-12 text-center shadow-lg`}
             >
               {/* Ícono animado */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', delay: 0.1 }}
-                className="flex justify-center mb-6"
+                className="flex justify-center mb-8"
               >
-                {info.icon}
+                <div className="w-24 h-24 flex items-center justify-center">
+                  {React.cloneElement(info.icon, { className: `${info.icon.props.className || ''} w-20 h-20` })}
+                </div>
               </motion.div>
 
               {/* Título */}
-              <h1 className={`text-3xl font-bold mb-3 ${info.color}`}>
+              <h1 className={`text-4xl font-bold mb-4 ${info.color}`}>
                 {info.title}
               </h1>
 
               {/* Mensaje */}
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 {info.message}
               </p>
 

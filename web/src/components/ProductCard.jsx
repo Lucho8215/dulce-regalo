@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 // Componente de tarjeta de producto con efectos hover y animaciones
 const ProductCard = ({ product, onAddToCart }) => {
   const formatPrice = (price) =>
-    new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(price);
+    new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(price);
 
   // Maneja el clic en agregar al carrito
   const handleAddToCart = (e) => {

@@ -203,7 +203,7 @@ const CheckoutPage = () => {
                               <div className="flex items-center justify-between">
                                 <span className={`font-semibold ${activo ? 'text-primary' : 'text-foreground'}`}>{op.label}</span>
                                 <span className={`font-bold text-base ${activo ? 'text-primary' : 'text-foreground'}`}>
-                                  {op.precio === 0 ? 'Gratis' : `$${op.precio.toLocaleString('es-CO')}`}
+                                  {op.precio === 0 ? 'Gratis' : `$${Math.round(op.precio).toLocaleString('es-CO')}`}
                                 </span>
                               </div>
                               <div className="flex items-center gap-1 mt-1">
@@ -278,10 +278,16 @@ const CheckoutPage = () => {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
+                        className="text-center"
                       >
-                        <p className="text-sm text-green-600 font-medium mb-3 text-center">
-                          ✅ Datos guardados — ahora completa el pago:
-                        </p>
+                        <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-6 mb-6">
+                          <p className="text-2xl font-bold text-green-700 mb-2">
+                            ✅ ¡Pedido confirmado!
+                          </p>
+                          <p className="text-lg text-green-600">
+                            Ahora completa el pago para finalizar tu compra
+                          </p>
+                        </div>
                         {/* WompiButton recibe todo lo necesario para el pago */}
                         <WompiButton
                           totalCOP={calculateTotal()}
